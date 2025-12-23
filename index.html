@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOOMPER Beta — Conexão Inteligente no Transporte de Veículos</title>
+  <meta name="description" content="Plataforma que conecta motoristas cegonha, chapas e transportadoras. Versão Beta fechada — 500 motoristas + 500 chapas + 5 transportadoras.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="LOOMPER — Seja um Pioneiro">
+  <meta property="og:description" content="Conectamos quem move o Brasil. Cadastre-se no Beta fechado.">
+  <meta property="og:image" content="/assets/images/og-image.png">
+  <meta property="og:type" content="website">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="/assets/images/icon-l.png">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/assets/loomper-optimized.css">
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER FIXO COM BLUR
+       ============================================ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#hero" class="logo">
+          <div class="logo-icon">L</div>
+          <span class="logo-text">LOOMPER</span>
+        </a>
+        
+        <nav class="nav-desktop">
+          <a href="#oque-e" class="nav-link">O que é</a>
+          <a href="#para-quem" class="nav-link">Para quem</a>
+          <a href="#como-funciona" class="nav-link">Como funciona</a>
+          <a href="#cadastro" class="btn btn-primary btn-sm">Entrar no Beta</a>
+        </nav>
+        
+        <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Menu Mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#oque-e" class="mobile-link">O que é</a>
+      <a href="#para-quem" class="mobile-link">Para quem</a>
+      <a href="#como-funciona" class="mobile-link">Como funciona</a>
+      <a href="#cadastro" class="btn btn-primary">Entrar no Beta</a>
+    </div>
+  </header>
+
+  <!-- ============================================
+       HERO — CALL TO ACTION FORTE
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Beta Fechado • 2025 • Vagas Limitadas
+        </div>
+        
+        <h1 class="hero-title">
+          A evolução da <span class="text-highlight">conexão logística</span> no Brasil
+        </h1>
+        
+        <p class="hero-subtitle">
+          Conectamos <strong>motoristas cegonha</strong>, <strong>chapas/ajudantes</strong> e <strong>transportadoras</strong> 
+          com agilidade, segurança e respeito.
+        </p>
+        
+        <p class="hero-social-mission">
+          🎯 <strong>Missão social:</strong> Gerar recorrência e previsibilidade de renda para centenas de milhares de profissionais
+        </p>
+        
+        <div class="hero-ctas">
+          <a href="#cadastro" class="btn btn-primary btn-large" data-profile="motorista">
+            🚚 Sou Motorista
+          </a>
+          <a href="#cadastro" class="btn btn-primary btn-large" data-profile="chapa">
+            👷 Sou Chapa/Ajudante
+          </a>
+          <a href="#cadastro" class="btn btn-secondary btn-large" data-profile="transportadora">
+            🏢 Sou Transportadora
+          </a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">500</div>
+            <div class="stat-label">Motoristas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">500</div>
+            <div class="stat-label">Chapas</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Transportadoras</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <!-- ============================================
+         O QUE É — CLAREZA EM 3 SEGUNDOS
+         ============================================ -->
+    <section class="section section-light" id="oque-e">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Entenda</span>
+          <h2 class="section-title">O que é o <span class="text-highlight">Loomper</span>?</h2>
+          <p class="section-subtitle">Veja o fluxo em 3 segundos ⬇️</p>
+        </div>
+        
+        <div class="flow-diagram">
+          <!-- Motorista -->
+          <div class="flow-card">
+            <div class="flow-icon">🚚</div>
+            <div class="flow-title">Motorista</div>
+            <div class="flow-steps">
+              <div class="flow-step">1️⃣ Precisa de chapa</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">2️⃣ Abre o app</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">3️⃣ Escolhe profissional</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">✅ Conectado!</div>
+            </div>
+          </div>
+          
+          <!-- Chapa -->
+          <div class="flow-card">
+            <div class="flow-icon">👷</div>
+            <div class="flow-title">Chapa/Ajudante</div>
+            <div class="flow-steps">
+              <div class="flow-step">1️⃣ Quer trabalhar</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">2️⃣ Vê vagas disponíveis</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">3️⃣ Se candidata</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">✅ Selecionado!</div>
+            </div>
+          </div>
+          
+          <!-- Transportadora -->
+          <div class="flow-card">
+            <div class="flow-icon">🏢</div>
+            <div class="flow-title">Transportadora</div>
+            <div class="flow-steps">
+              <div class="flow-step">1️⃣ Gerencia frota</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">2️⃣ Monitora operações</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">3️⃣ Analisa dados</div>
+              <div class="flow-arrow">↓</div>
+              <div class="flow-step">✅ Mais eficiência!</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="value-prop">
+          <div class="value-prop-card">
+            <h3>🎯 Simplicidade</h3>
+            <p>Bateu o olho, entendeu. Sem complicação.</p>
+          </div>
+          <div class="value-prop-card">
+            <h3>⚡ Rapidez</h3>
+            <p>Conexão em minutos, não em horas.</p>
+          </div>
+          <div class="value-prop-card">
+            <h3>🤝 Confiança</h3>
+            <p>Avaliações e reputação transparentes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PARA QUEM — BENEFÍCIOS POR PERFIL
+         ============================================ -->
+    <section class="section section-dark" id="para-quem">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Para quem</span>
+          <h2 class="section-title">Cada perfil, benefícios específicos</h2>
+        </div>
+        
+        <div class="profile-grid">
+          <!-- Motorista -->
+          <div class="profile-card" data-profile="motorista">
+            <div class="profile-header">
+              <div class="profile-icon">🚚</div>
+              <h3 class="profile-title">Motoristas Cegonha</h3>
+            </div>
+            <ul class="profile-benefits">
+              <li>✅ Encontre ajudantes qualificados rapidamente</li>
+              <li>✅ Veja avaliações e histórico de trabalho</li>
+              <li>✅ Menos tempo parado, mais rodagem</li>
+              <li>✅ Pagamento seguro pelo app</li>
+              <li>✅ Suporte 24/7 no WhatsApp</li>
+            </ul>
+            <button class="btn btn-outline" data-simulate="motorista">
+              Ver Simulação Prática
+            </button>
+          </div>
+          
+          <!-- Chapa -->
+          <div class="profile-card highlight" data-profile="chapa">
+            <div class="profile-badge">💯 Sempre GRATUITO</div>
+            <div class="profile-header">
+              <div class="profile-icon">👷</div>
+              <h3 class="profile-title">Chapas / Ajudantes</h3>
+            </div>
+            <ul class="profile-benefits">
+              <li>✅ <strong>Zero taxas — 100% gratuito para você</strong></li>
+              <li>✅ Receba ofertas de trabalho recorrentes</li>
+              <li>✅ Construa sua reputação profissional</li>
+              <li>✅ Previsibilidade de renda mensal</li>
+              <li>✅ Resgate seus sonhos com dignidade</li>
+            </ul>
+            <button class="btn btn-highlight" data-simulate="chapa">
+              Ver Oportunidades
+            </button>
+          </div>
+          
+          <!-- Transportadora -->
+          <div class="profile-card" data-profile="transportadora">
+            <div class="profile-header">
+              <div class="profile-icon">🏢</div>
+              <h3 class="profile-title">Transportadoras</h3>
+            </div>
+            <ul class="profile-benefits">
+              <li>✅ Dashboard completo de gestão</li>
+              <li>✅ Reduza ociosidade da frota</li>
+              <li>✅ Relatórios analíticos detalhados</li>
+              <li>✅ Controle de créditos e gastos</li>
+              <li>✅ ROI mensurável e escalável</li>
+            </ul>
+            <button class="btn btn-outline" data-simulate="transportadora">
+              Ver Painel Demo
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         COMO FUNCIONA — SIMULADORES VISUAIS
+         ============================================ -->
+    <section class="section section-light" id="como-funciona">
+      <div class="container">
+        <div class="section-header center">
+          <span class="section-label">Veja na prática</span>
+          <h2 class="section-title">Como funciona — Simulação Real</h2>
+        </div>
+        
+        <div class="simulator-tabs">
+          <button class="sim-tab active" data-tab="motorista">
+            🚚 Motorista
+          </button>
+          <button class="sim-tab" data-tab="chapa">
+            👷 Chapa
+          </button>
+          <button class="sim-tab" data-tab="transportadora">
+            🏢 Transportadora
+          </button>
+        </div>
+        
+        <div class="simulator-panels">
+          <!-- Simulador Motorista -->
+          <div class="sim-panel active" id="sim-motorista">
+            <div class="sim-mockup">
+              <div class="mockup-header">
+                <div class="mockup-title">Buscar Ajudante</div>
+              </div>
+              <div class="mockup-content">
+                <div class="mockup-form">
+                  <div class="form-field">
+                    <label>📍 Local da operação</label>
+                    <input type="text" value="São Paulo — Zona Leste" disabled>
+                  </div>
+                  <div class="form-field">
+                    <label>📅 Quando precisa?</label>
+                    <input type="text" value="Hoje, 14:00" disabled>
+                  </div>
+                  <div class="form-field">
+                    <label>🚗 Tipo de serviço</label>
+                    <input type="text" value="Descarga — 3 veículos" disabled>
+                  </div>
+                </div>
+                
+                <div class="mockup-results">
+                  <div class="result-card">
+                    <div class="result-avatar">👤</div>
+                    <div class="result-info">
+                      <div class="result-name">João Silva</div>
+                      <div class="result-rating">⭐ 4.9 (127 trabalhos)</div>
+                      <div class="result-distance">📍 2.3 km de você</div>
+                    </div>
+                    <button class="result-btn">Chamar</button>
+                  </div>
+                  
+                  <div class="result-card">
+                    <div class="result-avatar">👤</div>
+                    <div class="result-info">
+                      <div class="result-name">Carlos Mendes</div>
+                      <div class="result-rating">⭐ 4.8 (89 trabalhos)</div>
+                      <div class="result-distance">📍 3.1 km de você</div>
+                    </div>
+                    <button class="result-btn">Chamar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="sim-description">
+              💡 <strong>Como funciona:</strong> Motorista busca ajudantes próximos, vê avaliações e contrata em segundos.
+            </p>
+          </div>
+          
+          <!-- Simulador Chapa -->
+          <div class="sim-panel" id="sim-chapa">
+            <div class="sim-mockup">
+              <div class="mockup-header">
+                <div class="mockup-title">Vagas Disponíveis</div>
+              </div>
+              <div class="mockup-content">
+                <div class="mockup-results">
+                  <div class="vaga-card">
+                    <div class="vaga-header">
+                      <div class="vaga-title">Descarga — 3 veículos</div>
+                      <div class="vaga-value">R$ 200</div>
+                    </div>
+                    <div class="vaga-details">
+                      <div class="vaga-detail">📍 São Paulo — Zona Leste</div>
+                      <div class="vaga-detail">⏰ Hoje, 14:00 — 4h</div>
+                      <div class="vaga-detail">🚚 Motorista: ⭐ 4.7</div>
+                    </div>
+                    <button class="vaga-btn">Candidatar-se</button>
+                  </div>
+                  
+                  <div class="vaga-card">
+                    <div class="vaga-header">
+                      <div class="vaga-title">Carga — 2 veículos</div>
+                      <div class="vaga-value">R$ 150</div>
+                    </div>
+                    <div class="vaga-details">
+                      <div class="vaga-detail">📍 Santo André — Centro</div>
+                      <div class="vaga-detail">⏰ Amanhã, 08:00 — 3h</div>
+                      <div class="vaga-detail">🚚 Motorista: ⭐ 4.9</div>
+                    </div>
+                    <button class="vaga-btn">Candidatar-se</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="sim-description highlight">
+              💰 <strong>100% GRATUITO para o chapa:</strong> Você não paga nada. Recebe ofertas e constrói sua reputação.
+            </p>
+          </div>
+          
+          <!-- Simulador Transportadora -->
+          <div class="sim-panel" id="sim-transportadora">
+            <div class="sim-mockup dashboard">
+              <div class="mockup-header">
+                <div class="mockup-title">Dashboard — Análise Mensal</div>
+              </div>
+              <div class="mockup-content">
+                <div class="dashboard-kpis">
+                  <div class="kpi-card">
+                    <div class="kpi-label">Operações</div>
+                    <div class="kpi-value">247</div>
+                    <div class="kpi-change positive">+18% mês</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="kpi-label">Economia</div>
+                    <div class="kpi-value">R$ 12.4k</div>
+                    <div class="kpi-change positive">+22% mês</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="kpi-label">Atrasos</div>
+                    <div class="kpi-value">-34%</div>
+                    <div class="kpi-change positive">Redução</div>
+                  </div>
+                  <div class="kpi-card">
+                    <div class="kpi-label">Satisfação</div>
+                    <div class="kpi-value">4.8⭐</div>
+                    <div class="kpi-change positive">Excelente</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p class="sim-description">
+              📊 <strong>Gestão completa:</strong> Acompanhe métricas, reduza custos e tome decisões baseadas em dados.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         PROPÓSITO SOCIAL
+         ============================================ -->
+    <section class="section section-purpose">
+      <div class="container">
+        <div class="purpose-content">
+          <div class="purpose-icon">❤️</div>
+          <h2 class="purpose-title">Nosso Propósito Social</h2>
+          <p class="purpose-text">
+            <strong>Gerar recorrência e previsibilidade de renda</strong> para centenas de milhares de 
+            chapas e ajudantes que trabalham de forma avulsa, a partir de indicações isoladas.
+          </p>
+          <p class="purpose-highlight">
+            "Aqui, cada profissional tem dignidade, ferramentas e oportunidade de sustentar sua família 
+            e realizar seus sonhos através do trabalho honesto."
+          </p>
+          <div class="purpose-stats">
+            <div class="purpose-stat">
+              <div class="purpose-stat-value">Zero</div>
+              <div class="purpose-stat-label">Taxa para o Chapa</div>
+            </div>
+            <div class="purpose-stat">
+              <div class="purpose-stat-value">100%</div>
+              <div class="purpose-stat-label">Gratuito</div>
+            </div>
+            <div class="purpose-stat">
+              <div class="purpose-stat-value">∞</div>
+              <div class="purpose-stat-label">Oportunidades</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         FORMULÁRIO DE CADASTRO — ALTA CONVERSÃO
+         ============================================ -->
+    <section class="section section-form" id="cadastro">
+      <div class="container-narrow">
+        <div class="section-header center">
+          <span class="section-label">Seja um Pioneiro</span>
+          <h2 class="section-title">Garanta sua vaga no <span class="text-highlight">Beta Fechado</span></h2>
+          <p class="section-subtitle">
+            🚀 Vagas limitadas: <strong>500 motoristas + 500 chapas + 5 transportadoras</strong><br>
+            Acesso prioritário para quem se cadastrar primeiro
+          </p>
+        </div>
+        
+        <form 
+          id="waitlistForm" 
+          name="waitlist" 
+          method="POST" 
+          data-netlify="true" 
+          netlify-honeypot="bot-field"
+          class="waitlist-form"
+        >
+          <input type="hidden" name="form-name" value="waitlist">
+          <input type="hidden" id="user_id" name="user_id">
+          <input type="hidden" id="referrer_id" name="referrer_id">
+          <input type="hidden" id="user_journey" name="user_journey">
+          <input type="hidden" id="terms_accepted_at" name="terms_accepted_at">
+          <input type="hidden" id="credits_initial" name="credits_initial">
+          
+          <!-- Honeypot -->
+          <div style="display:none;">
+            <input name="bot-field">
+          </div>
+          
+          <!-- Perfil - PRIMEIRO CAMPO CRÍTICO -->
+          <div class="form-group highlight-field">
+            <label for="user_type">
+              <span class="label-icon">👤</span>
+              Seu Perfil <span class="required">*</span>
+            </label>
+            <select id="user_type" name="user_type" required>
+              <option value="">Selecione seu perfil</option>
+              <option value="Motorista">🚚 Motorista Cegonha</option>
+              <option value="Chapa / Ajudante">👷 Chapa / Ajudante (SEMPRE GRATUITO)</option>
+              <option value="Transportadora">🏢 Transportadora</option>
+              <option value="Investidor">💼 Investidor / Parceiro</option>
+            </select>
+          </div>
+          
+          <!-- Nome -->
+          <div class="form-group">
+            <label for="name">
+              <span class="label-icon">✍️</span>
+              Nome Completo <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="Ex: João da Silva"
+              required
+            >
+          </div>
+          
+          <!-- WhatsApp -->
+          <div class="form-group">
+            <label for="whatsapp">
+              <span class="label-icon">📱</span>
+              WhatsApp <span class="required">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="whatsapp" 
+              name="whatsapp" 
+              placeholder="11999998888"
+              pattern="[0-9]{10,11}"
+              required
+            >
+            <small>Digite DDD + número (apenas números)</small>
+          </div>
+          
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">
+              <span class="label-icon">✉️</span>
+              E-mail <span class="required">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="seu@email.com"
+              required
+            >
+          </div>
+          
+          <!-- UF + Cidade -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="uf">
+                Estado <span class="required">*</span>
+              </label>
+              <select id="uf" name="uf" required>
+                <option value="">UF</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AM">AM</option>
+                <option value="AP">AP</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MG">MG</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="PR">PR</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="RS">RS</option>
+                <option value="SC">SC</option>
+                <option value="SE">SE</option>
+                <option value="SP">SP</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="city">
+                Cidade <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="city" 
+                name="city" 
+                placeholder="Digite sua cidade"
+                required
+              >
+            </div>
+          </div>
+          
+          <!-- Indicação (opcional) -->
+          <div class="form-group">
+            <label for="invite_phone">
+              <span class="label-icon">👥</span>
+              Indicar Amigo (Ganhe Benefícios)
+            </label>
+            <input 
+              type="tel" 
+              id="invite_phone" 
+              name="invite_phone" 
+              placeholder="WhatsApp do amigo: 11999998888"
+            >
+            <small>🎁 Indique e suba no ranking de prioridade!</small>
+          </div>
+          
+          <!-- Termos -->
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" name="terms" required>
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">
+                Li e aceito os <a href="/terms.html" target="_blank">Termos de Uso</a> 
+                e a <a href="/privacy.html" target="_blank">Política de Privacidade</a>
+              </span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-submit" id="submitBtn">
+            <span class="btn-text">🚀 Garantir Minha Vaga no Beta</span>
+            <span class="btn-loading" style="display:none;">⏳ Processando...</span>
+          </button>
+          
+          <p class="form-disclaimer">
+            🔒 <strong>Privacidade garantida.</strong> Usaremos seus dados apenas para comunicação sobre o Loomper. 
+            Descadastre-se quando quiser.
+          </p>
+        </form>
+        
+        <!-- Benefícios de ser pioneiro -->
+        <div class="pioneer-benefits">
+          <h3>Por que ser pioneiro?</h3>
+          <div class="benefit-cards">
+            <div class="benefit-card">
+              <div class="benefit-icon">🎯</div>
+              <div class="benefit-title">Acesso Antecipado</div>
+              <div class="benefit-text">Entre antes do mercado</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">💳</div>
+              <div class="benefit-title">Créditos Trial</div>
+              <div class="benefit-text">Saldo para testar grátis</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">⭐</div>
+              <div class="benefit-title">Reconhecimento</div>
+              <div class="benefit-text">Benefícios exclusivos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================
+         APOIE O PROJETO
+         ============================================ -->
+    <section class="section section-support">
+      <div class="container-narrow">
+        <div class="support-content">
+          <h2 class="support-title">Apoie o Movimento</h2>
+          <p class="support-subtitle">Ajude a impulsionar este projeto de impacto social</p>
+          
+          <div class="pix-area">
+            <div class="pix-key">
+              <div class="pix-label">Chave PIX (E-mail)</div>
+              <div class="pix-value" id="pixKey">contato@loomper.com.br</div>
+            </div>
+            
+            <div class="pix-actions">
+              <button class="btn btn-outline" id="copyPixBtn">
+                📋 Copiar Chave PIX
+              </button>
+              <button class="btn btn-outline" id="showQrBtn">
+                📱 Ver QR Code
+              </button>
+            </div>
+            
+            <div class="pix-qr" id="pixQr" style="display:none;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">L</div>
+            <span class="logo-text">LOOMPER</span>
+          </div>
+          <p class="footer-tagline">Logística • Tecnologia • Pessoas</p>
+        </div>
+        
+        <div class="footer-info">
+          <p><strong>LOOMPER®</strong> — Marca registrada</p>
+          <p>Grupo Ajud.AI • Inova Simples (I.S.)</p>
+          <p>CNPJ: 59.150.688/0001-39</p>
+          <p>São Bernardo do Campo • SP • Brasil</p>
+        </div>
+        
+        <div class="footer-links">
+          <a href="/terms.html" target="_blank">Termos de Uso</a>
+          <a href="/privacy.html" target="_blank">Política de Privacidade</a>
+          <a href="mailto:contato@loomper.com.br">contato@loomper.com.br</a>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 LOOMPER — Do Brasil para o Mundo 🇧🇷</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       WHATSAPP FAB
+       ============================================ -->
+  <a 
+    href="#" 
+    class="whatsapp-fab" 
+    id="whatsappFab"
+    aria-label="Falar no WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ============================================
+       MODAL SUCESSO
+       ============================================ -->
+  <div class="modal" id="successModal">
+    <div class="modal-overlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      
+      <div class="modal-icon">✅</div>
+      <h3 class="modal-title">Bem-vindo ao Beta Loomper!</h3>
+      <p class="modal-text">
+        Sua inscrição foi recebida com sucesso.<br>
+        <strong>ID:</strong> <span id="modalUserId"></span>
+      </p>
+      
+      <div class="modal-actions">
+        <button class="btn btn-primary" id="joinWhatsappBtn">
+          Entrar no Grupo WhatsApp
+        </button>
+        <button class="btn btn-outline" id="inviteFriendsBtn">
+          Convidar Amigos
+        </button>
+      </div>
+      
+      <p class="modal-note">
+        Em breve você receberá mais informações por WhatsApp e e-mail.
+      </p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="/assets/loomper-optimized.js"></script>
+</body>
+</html>
