@@ -4,154 +4,170 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>LOOMPER — A evolução da conexão no transporte de veículos</title>
-  <meta name="description" content="LOOMPER conecta motoristas, chapas e transportadoras em um ecossistema seguro. Versão Beta • Acesso fechado." />
 
   <link rel="icon" type="image/png" href="/assets/images/icon-l.png" />
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="/assets/loomper-v2.css" />
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header class="header">
+<!-- ================= HEADER ================= -->
+<header class="header" id="header">
   <div class="container header-inner">
-    <img src="/assets/images/loomper_logo_semfundo.PNG" alt="LOOMPER" class="logo" />
+    <a href="#" class="logo">
+      <img src="/assets/images/loomper_logo_semfundo.PNG" alt="LOOMPER" />
+    </a>
+
     <nav class="nav-desktop">
-      <a href="#sobre">O que é</a>
-      <a href="#para-quem">Para quem</a>
-      <a href="#pioneiros">Pioneiros</a>
-      <a href="#waitlist" class="cta-link">Entrar no Beta</a>
+      <a href="#sobre" class="nav-link">O que é</a>
+      <a href="#para-quem" class="nav-link">Para quem</a>
+      <a href="#pioneiros" class="nav-link">Pioneiros</a>
     </nav>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  <nav class="nav-mobile" id="navMobile">
+    <a href="#sobre" class="nav-link-mobile">O que é</a>
+    <a href="#para-quem" class="nav-link-mobile">Para quem</a>
+    <a href="#pioneiros" class="nav-link-mobile">Pioneiros</a>
+  </nav>
 </header>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="container">
+  <div class="hero-bg">
+    <img src="/assets/images/hero-truck.png" alt="" />
+    <div class="hero-overlay"></div>
+  </div>
+
+  <div class="hero-content">
     <span class="hero-badge">Versão Beta • Acesso Fechado</span>
-    <h1><span class="text-gold">LOOMPER</span>, a evolução da conexão no transporte de veículos.</h1>
-    <p>Conectamos quem precisa chegar ao destino com quem já conhece o caminho.</p>
+
+    <h1 class="hero-title">
+      <span class="text-gold">LOOMPER</span>, a evolução da conexão no transporte de veículos
+    </h1>
+
+    <p class="hero-subtitle">
+      Conectamos quem precisa chegar ao destino com quem já conhece o caminho.
+    </p>
+
+    <p class="hero-micro">Construído junto com quem está na operação real.</p>
+
+    <div class="hero-ctas">
+      <a href="#para-quem" class="btn btn-primary">Conhecer a plataforma</a>
+    </div>
   </div>
 </section>
 
-<!-- FORMULÁRIO -->
-<section class="section" id="waitlist">
+<!-- ================= SOBRE ================= -->
+<section class="section" id="sobre">
   <div class="container">
-    <h2>Garanta seu lugar no <span class="text-gold">Beta fechado</span></h2>
+    <div class="section-header">
+      <span class="section-label">Entenda</span>
+      <h2 class="section-title">
+        O <span class="text-gold">Loomper</span> nasce onde a logística acontece
+      </h2>
+    </div>
 
-    <form id="waitlistForm"
-          name="waitlist"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          novalidate>
-
-      <input type="hidden" name="form-name" value="waitlist" />
-      <input type="hidden" name="terms_accepted_at" id="terms_accepted_at" />
-
-      <div style="display:none">
-        <input name="bot-field" />
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          Um ecossistema colaborativo criado a partir da escuta de quem vive a coleta e a entrega.
+        </p>
+        <div class="about-highlight">
+          Conexão não é discurso.  
+          <strong>É presença no momento certo.</strong>
+        </div>
       </div>
-
-      <div class="form-group">
-        <label>Nome completo *</label>
-        <input type="text" id="name" required />
-      </div>
-
-      <div class="form-group">
-        <label>WhatsApp *</label>
-        <input type="tel" id="whatsapp" placeholder="11999998888" required />
-        <span class="error" id="whatsapp-error"></span>
-      </div>
-
-      <div class="form-group">
-        <label>E-mail *</label>
-        <input type="email" id="email" required />
-        <span class="error" id="email-error"></span>
-      </div>
-
-      <div class="form-group">
-        <label>Estado *</label>
-        <select id="uf" required>
-          <option value="">Selecione</option>
-          <option value="SP">São Paulo</option>
-          <option value="RJ">Rio de Janeiro</option>
-          <option value="MG">Minas Gerais</option>
-          <!-- demais UFs mantidas -->
-        </select>
-      </div>
-
-      <div class="form-group">
-        <label>Cidade *</label>
-        <input type="text" id="city" required />
-        <span class="error" id="city-error"></span>
-      </div>
-
-      <div class="form-group terms">
-        <label>
-          <input type="checkbox" id="terms" required />
-          Aceito os Termos de Uso e Política de Privacidade
-        </label>
-        <span class="error" id="terms-error"></span>
-      </div>
-
-      <button type="submit" class="btn btn-primary btn-block">
-        Entrar para o Beta Loomper
-      </button>
-    </form>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ================= PARA QUEM ================= -->
+<section class="section section-dark" id="para-quem">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Para quem</span>
+      <h2 class="section-title">Cada perfil, uma experiência pensada</h2>
+    </div>
+
+    <div class="profile-cards">
+      <div class="profile-card">
+        <div class="profile-icon">🚚</div>
+        <h3 class="profile-title text-gold">Motoristas</h3>
+        <p>Menos tempo parado. Mais tempo faturando.</p>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-icon">👷</div>
+        <h3 class="profile-title text-gold">Chapas</h3>
+        <p>Trabalho recorrente, sem depender de indicação.</p>
+      </div>
+
+      <div class="profile-card">
+        <div class="profile-icon">🏢</div>
+        <h3 class="profile-title text-gold">Transportadoras</h3>
+        <p>Operação urbana organizada e previsível.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PIONEIROS ================= -->
+<section class="section" id="pioneiros">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Beta Fechado</span>
+      <h2 class="section-title">
+        Primeiro é para poucos. <span class="text-gold">Depois, para o mercado.</span>
+      </h2>
+    </div>
+
+    <div class="about-content">
+      <p>
+        Estamos construindo com um grupo reduzido de pioneiros que vivem a operação real.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISÃO ================= -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">Visão</span>
+      <h2 class="section-title">Eficiência com dignidade</h2>
+    </div>
+
+    <div class="about-content">
+      <p>
+        Organizar relações existentes, valorizar pessoas e transformar dados reais em benefício coletivo.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
 <footer class="footer">
-  <div class="container">
-    <p><strong>LOOMPER®</strong> — Ajud.ai Brasil Inova Simples (I.S.)</p>
+  <div class="container footer-info">
+    <p><strong>LOOMPER®</strong> — Grupo Ajud.AI</p>
     <p>CNPJ: 59.150.688/0001-39</p>
     <p>São Bernardo do Campo • SP • Brasil</p>
   </div>
 </footer>
 
-<script>
-document.getElementById('terms').addEventListener('change', function () {
-  if (this.checked) {
-    document.getElementById('terms_accepted_at').value = new Date().toISOString();
-  }
-});
-
-document.getElementById('waitlistForm').addEventListener('submit', function (e) {
-  let valid = true;
-
-  const phone = document.getElementById('whatsapp');
-  const email = document.getElementById('email');
-  const city  = document.getElementById('city');
-  const terms = document.getElementById('terms');
-
-  if (!/^\d{11}$/.test(phone.value)) {
-    valid = false;
-    document.getElementById('whatsapp-error').innerText = 'WhatsApp inválido';
-  }
-
-  if (!email.value.includes('@') || !email.value.includes('.')) {
-    valid = false;
-    document.getElementById('email-error').innerText = 'Email inválido';
-  }
-
-  if (city.value.length < 3) {
-    valid = false;
-    document.getElementById('city-error').innerText = 'Cidade inválida';
-  }
-
-  if (!terms.checked) {
-    valid = false;
-    document.getElementById('terms-error').innerText = 'Aceite os termos';
-  }
-
-  if (!valid) e.preventDefault();
-});
-</script>
+<!-- JS -->
+<script src="/assets/loomper-v2.js"></script>
 
 </body>
 </html>
