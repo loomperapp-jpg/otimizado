@@ -273,6 +273,48 @@
 
 <!-- JS -->
 <script src="/assets/loomper-v2.js"></script>
+<script>
+(function () {
+  const form = document.getElementById('waitlistForm');
+  if (!form) return;
+
+  const userId = localStorage.getItem('loomper_user_id') ||
+    ('LMP-' + Math.random().toString(36).substring(2, 10).toUpperCase());
+
+  localStorage.setItem('loomper_user_id', userId);
+
+  form.addEventListener('submit', function (e) {
+    const whatsapp = form.whatsapp.value.replace(/\D/g, '');
+    const email = form.email.value;
+    const terms = document.getElementById('terms').checked;
+
+    if (whatsapp.length < 10 || whatsapp.length > 11) {
+      alert('WhatsApp inválido');
+      e.preventDefault();
+      return;
+    }
+
+    if (!email.includes('@')) {
+      alert('E-mail inválido');
+      e.preventDefault();
+      return;
+    }
+
+    if (!terms) {
+      alert('Você precisa aceitar os termos');
+      e.preventDefault();
+      return;
+    }
+
+    document.getElementById('id_user').value = userId;
+    document.getElementById('referrer_id').value =
+      new URLSearchParams(window.location.search).get('ref') || 'direct';
+
+    document.getElementById('terms_accepted_at').value =
+      new Date().toISOString();
+  });
+})();
+</script>
 
 </body>
 </html>
