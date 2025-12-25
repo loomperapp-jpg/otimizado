@@ -257,8 +257,26 @@
     });
 
     // Submit
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+    function initForm() {
+  const form = document.getElementById('waitlistForm');
+  if (!form) return;
+
+  const userId = getUserId();
+
+  form.addEventListener('submit', () => {
+    document.getElementById('user_id').value = userId;
+    document.getElementById('referrer_id').value = getReferrerId();
+    document.getElementById('terms_accepted_at').value =
+      new Date().toISOString();
+    document.getElementById('user_journey').value =
+      JSON.stringify(Tracking.getSummary());
+
+    Tracking.track('form_submit');
+    // ⚠️ NÃO usar preventDefault
+    // ⚠️ NÃO usar fetch
+    // ⚠️ NÃO validar aqui
+  });
+}
 
       // Validações
       const userType = $('#user_type').value;
