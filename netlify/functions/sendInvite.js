@@ -17,9 +17,6 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ error: 'Dados inválidos' })
       };
     }
-
-    // TODO: Integração com Make.com ou serviço de email
-    // Por enquanto, apenas retorna sucesso
     
     // Formato da mensagem
     const inviteMessage = `
@@ -37,12 +34,7 @@ Link: ${process.env.URL || 'https://loomper.com.br'}?ref=${user_id}
 LOOMPER — Do Brasil para o Mundo 🇧🇷
     `.trim();
 
-    // Aqui você pode integrar com:
-    // - Make.com (webhook)
-    // - Twilio (WhatsApp Business API)
-    // - SendGrid (email)
-    
-    // Exemplo webhook Make.com:
+    // Integração com Make.com via webhook
     if (process.env.MAKE_WEBHOOK_URL) {
       await fetch(process.env.MAKE_WEBHOOK_URL, {
         method: 'POST',
