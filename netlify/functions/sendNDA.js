@@ -16,8 +16,6 @@ exports.handler = async (event, context) => {
         body: JSON.stringify({ error: 'Dados inválidos' })
       };
     }
-
-    // TODO: Integração com Make.com para envio de NDA via email
     
     const ndaEmailContent = `
 <!DOCTYPE html>
@@ -73,7 +71,7 @@ exports.handler = async (event, context) => {
 </html>
     `.trim();
 
-    // Integração com Make.com ou serviço de email
+    // Integração com Make.com via webhook
     if (process.env.MAKE_WEBHOOK_URL) {
       await fetch(process.env.MAKE_WEBHOOK_URL, {
         method: 'POST',
