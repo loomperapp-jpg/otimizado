@@ -1,7 +1,22 @@
 [build]
   publish = "."
+  command = ""
 
-# Segurança básica
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+# Redirect 404 to home
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers para segurança
 [[headers]]
   for = "/*"
   [headers.values]
