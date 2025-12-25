@@ -138,7 +138,7 @@
     if (!form) return;
 
     form.addEventListener('submit', () => {
-      const idUser = $('id_user');
+      const idUser = $('user_id');
       const ref = $('referrer_id');
       const journey = $('user_journey');
       const termsAt = $('terms_accepted_at');
