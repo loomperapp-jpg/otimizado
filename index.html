@@ -169,76 +169,202 @@
       </p>
     </div>
 
-    <form
-  name="waitlist"
-  method="POST"
-  action="/sucesso.html"
-  data-netlify="true"
-  netlify-honeypot="bot-field"
-  class="waitlist-form"
-  id="waitlistForm"
->
-  <input type="hidden" name="form-name" value="waitlist" />
-  <input type="hidden" name="id_user" id="id_user" />
-  <input type="hidden" name="referrer_id" id="referrer_id" />
-  <input type="hidden" name="terms_accepted_at" id="terms_accepted_at" />
+        <form 
+          id="waitlistForm" 
+          name="waitlist" 
+          method="POST" 
+          data-netlify="true" 
+          netlify-honeypot="bot-field"
+          class="waitlist-form"
+        >
+          <input type="hidden" name="form-name" value="waitlist">
+          <input type="hidden" id="user_id" name="user_id">
+          <input type="hidden" id="referrer_id" name="referrer_id">
+          <input type="hidden" id="user_journey" name="user_journey">
+          <input type="hidden" id="terms_accepted_at" name="terms_accepted_at">
+          <input type="hidden" id="credits_initial" name="credits_initial">
+          
+          <!-- Honeypot -->
+          <div style="display:none;">
+            <input name="bot-field">
+          </div>
+          
+          <!-- Perfil - PRIMEIRO CAMPO CRÍTICO -->
+          <div class="form-group highlight-field">
+            <label for="user_type">
+              <span class="label-icon">👤</span>
+              Seu Perfil <span class="required">*</span>
+            </label>
+            <select id="user_type" name="user_type" required>
+              <option value="">Selecione seu perfil</option>
+              <option value="Motorista">🚚 Motorista Cegonha</option>
+              <option value="Chapa / Ajudante">👷 Chapa / Ajudante </option>
+              <option value="Transportadora">🏢 Transportadora</option>
+              <option value="Investidor">💼 Investidor / Parceiro</option>
+            </select>
+          </div>
+          
+          <!-- Nome -->
+          <div class="form-group">
+            <label for="name">
+              <span class="label-icon">✍️</span>
+              Nome Completo <span class="required">*</span>
+            </label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              placeholder="Ex: João da Silva"
+              required
+            >
+          </div>
+          
+          <!-- WhatsApp -->
+          <div class="form-group">
+            <label for="whatsapp">
+              <span class="label-icon">📱</span>
+              WhatsApp <span class="required">*</span>
+            </label>
+            <input 
+              type="tel" 
+              id="whatsapp" 
+              name="whatsapp" 
+              placeholder="11999998888"
+              pattern="[0-9]{10,11}"
+              required
+            >
+            <small>Digite DDD + número (apenas números)</small>
+          </div>
+          
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">
+              <span class="label-icon">✉️</span>
+              E-mail <span class="required">*</span>
+            </label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              placeholder="seu@email.com"
+              required
+            >
+          </div>
+          
+          <!-- UF + Cidade -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="uf">
+                Estado <span class="required">*</span>
+              </label>
+              <select id="uf" name="uf" required>
+                <option value="">UF</option>
+                <option value="AC">AC</option>
+                <option value="AL">AL</option>
+                <option value="AM">AM</option>
+                <option value="AP">AP</option>
+                <option value="BA">BA</option>
+                <option value="CE">CE</option>
+                <option value="DF">DF</option>
+                <option value="ES">ES</option>
+                <option value="GO">GO</option>
+                <option value="MA">MA</option>
+                <option value="MG">MG</option>
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="PA">PA</option>
+                <option value="PB">PB</option>
+                <option value="PE">PE</option>
+                <option value="PI">PI</option>
+                <option value="PR">PR</option>
+                <option value="RJ">RJ</option>
+                <option value="RN">RN</option>
+                <option value="RO">RO</option>
+                <option value="RR">RR</option>
+                <option value="RS">RS</option>
+                <option value="SC">SC</option>
+                <option value="SE">SE</option>
+                <option value="SP">SP</option>
+                <option value="TO">TO</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="city">
+                Cidade <span class="required">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="city" 
+                name="city" 
+                placeholder="Digite sua cidade"
+                required
+              >
+            </div>
+          </div>
+          
+          <!-- Indicação (opcional) -->
+          <div class="form-group">
+            <label for="invite_phone">
+              <span class="label-icon">👥</span>
+              Indicar Amigo (Ganhe Benefícios)
+            </label>
+            <input 
+              type="tel" 
+              id="invite_phone" 
+              name="invite_phone" 
+              placeholder="WhatsApp do amigo: 11999998888"
+            >
+            <small>🎁 Traga seus amigos que tenham perfil e experiência e garanta vantagens</small>
+          </div>
+          
+          <!-- Termos -->
+          <div class="form-group checkbox-group">
+            <label class="checkbox-label">
+              <input type="checkbox" id="terms" name="terms" required>
+              <span class="checkbox-custom"></span>
+              <span class="checkbox-text">
+                Li e aceito os <a href="/terms.html" target="_blank">Termos de Uso</a> 
+                e a <a href="/privacy.html" target="_blank">Política de Privacidade</a>
+              </span>
+            </label>
+          </div>
+          
+          <button type="submit" class="btn btn-submit" id="submitBtn">
+            <span class="btn-text">🚀 Garantir Minha Vaga no Beta</span>
+            <span class="btn-loading" style="display:none;">⏳ Processando...</span>
+          </button>
+          
+          <p class="form-disclaimer">
+            🔒 <strong>Privacidade garantida.</strong> Usaremos seus dados apenas para comunicação sobre o Loomper. 
+            Descadastre-se quando quiser.
+          </p>
+        </form>
+        
+        <!-- Benefícios de ser pioneiro -->
+        <div class="pioneer-benefits">
+          <h3>Por que ser pioneiro?</h3>
+          <div class="benefit-cards">
+            <div class="benefit-card">
+              <div class="benefit-icon">🎯</div>
+              <div class="benefit-title">Acesso Antecipado</div>
+              <div class="benefit-text">Entre antes do mercado</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">💳</div>
+              <div class="benefit-title">Créditos Trial</div>
+              <div class="benefit-text">Saldo para testar grátis</div>
+            </div>
+            <div class="benefit-card">
+              <div class="benefit-icon">⭐</div>
+              <div class="benefit-title">Reconhecimento</div>
+              <div class="benefit-text">Benefícios exclusivos</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- Honeypot -->
-  <p style="display:none">
-    <label>Não preencha: <input name="bot-field" /></label>
-  </p>
-
-  <div class="form-group">
-    <label>Nome completo *</label>
-    <input type="text" name="name" required />
-  </div>
-
-  <div class="form-group">
-    <label>WhatsApp *</label>
-    <input type="tel" name="whatsapp" required />
-  </div>
-
-  <div class="form-group">
-    <label>E-mail *</label>
-    <input type="email" name="email" required />
-  </div>
-
-  <div class="form-group">
-    <label>Estado *</label>
-    <input type="text" name="uf" required />
-  </div>
-
-  <div class="form-group">
-    <label>Cidade *</label>
-    <input type="text" name="city" required />
-  </div>
-
-  <div class="form-group">
-    <label>Perfil *</label>
-    <select name="perfil" required>
-      <option value="">Selecione</option>
-      <option>Motorista</option>
-      <option>Chapa / Ajudante</option>
-      <option>Transportadora</option>
-      <option>Investidor</option>
-    </select>
-  </div>
-
-  <div class="form-group">
-    <label>
-      <input type="checkbox" name="terms_accepted" required />
-      Li e aceito os
-      <a href="/terms.html" target="_blank">Termos</a> e a
-      <a href="/privacy.html" target="_blank">Política de Privacidade</a>
-    </label>
-  </div>
-
-  <button type="submit" class="btn btn-primary btn-block">
-    Entrar para o Beta Loomper
-  </button>
-</form>
-</div>
-</section>
 
 <!-- ================= FOOTER ================= -->
 <footer class="footer">
