@@ -1,5 +1,3 @@
-const nodemailer = require('nodemailer');
-
 exports.handler = async (event, context) => {
   // Apenas POST
   if (event.httpMethod !== 'POST') {
