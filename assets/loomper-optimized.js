@@ -1,545 +1,483 @@
-/**
- * =========================================================
- * LOOMPER OPTIMIZED JAVASCRIPT - VERSÃO CORRIGIDA
- * Tracking completo, validação, integrações preparadas
- * FIX: Netlify Forms agora funciona corretamente
- * =========================================================
+/*
+ * ========================================
+ * LOOMPER — LANDING PAGE OPTIMIZED JS
+ * v2.0 — Netlify Forms Compatible
+ * ========================================
  */
 
-(function() {
-  'use strict';
+// ========================================
+// CONFIG
+// ========================================
+const CONFIG = {
+  WHATSAPP_NUMBER: '5511965858142',
+  PIX_KEY: 'contato@loomper.com.br',
+  CONTACT_EMAIL: 'contato@loomper.com.br',
+  DOMAIN: window.location.origin,
+  CREDITS_MOTORISTA: 100,
+  CREDITS_CHAPA: 0,
+  CREDITS_TRANSPORTADORA: 500
+};
 
-  // ============================================
-  // CONFIGURAÇÕES
-  // ============================================
-  const CONFIG = {
-    WA_NUMBER: '5511965858142',
-    PIX_KEY: 'contato@loomper.com.br',
-    WA_GROUP: 'https://chat.whatsapp.com/GRUPO_ID', // Atualizar com ID real do grupo
-    CREDITS_MOTORISTA: 100,
-    CREDITS_TRANSPORTADORA: 500,
-    CREDITS_CHAPA: 0 // Sempre gratuito
-  };
+// ========================================
+// UTILITIES
+// ========================================
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => document.querySelectorAll(selector);
 
-  // ============================================
-  // UTILIDADES
-  // ============================================
-  const $ = (sel) => document.querySelector(sel);
-  const $$ = (sel) => document.querySelectorAll(sel);
-
-  function generateUserId() {
-    try {
-      if (crypto.randomUUID) {
-        return 'LMP-' + crypto.randomUUID().split('-')[0].toUpperCase();
-      }
-    } catch (e) {}
-    return 'LMP-' + Math.random().toString(36).substring(2, 10).toUpperCase();
-  }
-
-  function getUserId() {
-    let id = localStorage.getItem('loomper_user_id');
-    if (!id) {
-      id = generateUserId();
-      localStorage.setItem('loomper_user_id', id);
+const Utils = {
+  generateID: () => {
+    const prefix = 'LMP';
+    const random = Math.random().toString(36).substring(2, 10).toUpperCase();
+    return `${prefix}-${random}`;
+  },
+  
+  getOrCreateUserID: () => {
+    let userId = localStorage.getItem('loomper_user_id');
+    if (!userId) {
+      userId = Utils.generateID();
+      localStorage.setItem('loomper_user_id', userId);
     }
-    return id;
-  }
-
-  function getReferrerId() {
+    return userId;
+  },
+  
+  getReferrerID: () => {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('ref') || 'direct';
-  }
-
-  function formatWhatsApp(phone) {
-    return phone.replace(/\D/g, '');
-  }
-
-  // ============================================
-  // TRACKING (Jornada do usuário)
-  // ============================================
-  const Tracking = {
-    journey: [],
-
-    init() {
-      const saved = localStorage.getItem('loomper_journey');
-      if (saved) {
-        try {
-          this.journey = JSON.parse(saved);
-        } catch (e) {
-          this.journey = [];
-        }
-      }
-    },
-
-    track(action, data = {}) {
-      const event = {
-        action,
-        data,
-        timestamp: new Date().toISOString(),
-        user_id: getUserId()
-      };
-      this.journey.push(event);
-      localStorage.setItem('loomper_journey', JSON.stringify(this.journey));
-    },
-
-    getSummary() {
-      return {
-        user_id: getUserId(),
-        referrer: getReferrerId(),
-        total_events: this.journey.length,
-        first_visit: this.journey[0]?.timestamp,
-        last_visit: this.journey[this.journey.length - 1]?.timestamp,
-        actions: [...new Set(this.journey.map(j => j.action))]
-      };
+    const ref = urlParams.get('ref');
+    if (ref) {
+      localStorage.setItem('loomper_referrer', ref);
+      return ref;
     }
-  };
-
-  // ============================================
-  // HEADER SCROLL
-  // ============================================
-  function initHeader() {
-    const header = $('#header');
-    if (!header) return;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
+    return localStorage.getItem('loomper_referrer') || '';
+  },
+  
+  formatWhatsAppLink: (number, text) => {
+    const cleanNumber = number.replace(/\D/g, '');
+    const encodedText = encodeURIComponent(text);
+    return `https://wa.me/${cleanNumber}?text=${encodedText}`;
   }
+};
 
-  // ============================================
-  // MOBILE MENU
-  // ============================================
-  function initMobileMenu() {
-    const toggle = $('#menuToggle');
-    const menu = $('#mobileMenu');
-    if (!toggle || !menu) return;
-
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('active');
-      menu.classList.toggle('active');
-      Tracking.track('mobile_menu_toggle');
-    });
-
-    // Fechar ao clicar em link
-    $$('.mobile-link').forEach(link => {
-      link.addEventListener('click', () => {
-        toggle.classList.remove('active');
-        menu.classList.remove('active');
-      });
-    });
+// ========================================
+// TRACKING
+// ========================================
+const Tracking = {
+  events: [],
+  
+  track: (eventName, data = {}) => {
+    const event = {
+      event: eventName,
+      timestamp: new Date().toISOString(),
+      ...data
+    };
+    Tracking.events.push(event);
+    console.log('📊 Track:', eventName, data);
+  },
+  
+  getSummary: () => {
+    return {
+      total_events: Tracking.events.length,
+      first_visit: Tracking.events[0]?.timestamp,
+      last_event: Tracking.events[Tracking.events.length - 1]?.timestamp,
+      events: Tracking.events
+    };
   }
+};
 
-  // ============================================
-  // SMOOTH SCROLL
-  // ============================================
-  function initSmoothScroll() {
-    $$('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        if (href === '#') return;
-        
-        e.preventDefault();
-        const target = $(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          Tracking.track('scroll_to_section', { section: href });
-        }
-      });
+// ========================================
+// HEADER
+// ========================================
+function initHeader() {
+  const header = $('#header');
+  if (!header) return;
+  
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 100) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    lastScroll = currentScroll;
+  });
+}
+
+// ========================================
+// MOBILE MENU
+// ========================================
+function initMobileMenu() {
+  const menuToggle = $('#menuToggle');
+  const navMobile = $('#navMobile');
+  const body = document.body;
+  
+  if (!menuToggle || !navMobile) return;
+  
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navMobile.classList.toggle('active');
+    body.classList.toggle('menu-open');
+    
+    Tracking.track('mobile_menu_toggle', {
+      action: navMobile.classList.contains('active') ? 'open' : 'close'
     });
-  }
+  });
+  
+  // Fechar ao clicar em link
 
-  // ============================================
-  // PERFIL SELEÇÃO (Hero CTAs)
-  // ============================================
-  function initProfileSelection() {
-    $$('[data-profile]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const profile = btn.dataset.profile;
-        localStorage.setItem('loomper_selected_profile', profile);
-        Tracking.track('profile_selected', { profile });
-      });
+  $$('.nav-link-mobile').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navMobile.classList.remove('active');
+      body.classList.remove('menu-open');
     });
+  });
+}
 
-    // Preencher select do formulário
+// ========================================
+// PROFILE SELECTION
+// ========================================
+function initProfileSelection() {
+  // Salvar perfil ao clicar nos CTAs
+
+  $$('[data-profile]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const profile = e.currentTarget.dataset.profile;
+      localStorage.setItem('loomper_profile', profile);
+      
+      Tracking.track('profile_selected', { profile });
+    });
+  });
+  
+  // Preencher automaticamente o select se houver perfil salvo
+  const savedProfile = localStorage.getItem('loomper_profile');
+  if (savedProfile) {
     const profileSelect = $('#user_type');
     if (profileSelect) {
-      const savedProfile = localStorage.getItem('loomper_selected_profile');
-      if (savedProfile) {
-        const profileMap = {
-          'motorista': 'Motorista',
-          'chapa': 'Chapa / Ajudante',
-          'transportadora': 'Transportadora',
-          'investidor': 'Investidor'
-        };
-        if (profileMap[savedProfile]) {
-          profileSelect.value = profileMap[savedProfile];
-        }
+      const profileMap = {
+        motorista: 'Motorista',
+        chapa: 'Chapa / Ajudante',
+        transportadora: 'Transportadora',
+        investidor: 'Investidor'
+      };
+      
+      if (profileMap[savedProfile]) {
+        profileSelect.value = profileMap[savedProfile];
+        Tracking.track('profile_auto_filled', { profile: savedProfile });
       }
     }
   }
+}
 
-  // ============================================
-  // SIMULADORES
-  // ============================================
-  function initSimulators() {
-    const tabs = $$('.sim-tab');
-    const panels = $$('.sim-panel');
-
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const targetId = tab.dataset.tab;
-        
-        // Atualizar tabs
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        
-        // Atualizar painéis
-        panels.forEach(p => p.classList.remove('active'));
-        const targetPanel = $('#sim-' + targetId);
-        if (targetPanel) {
-          targetPanel.classList.add('active');
-        }
-        
-        Tracking.track('simulator_view', { type: targetId });
-      });
+// ========================================
+// TABS (SIMULADORES)
+// ========================================
+function initTabs() {
+  const tabBtns = $$('.tab-btn');
+  const tabPanels = $$('.tab-panel');
+  
+  if (!tabBtns.length || !tabPanels.length) return;
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.dataset.tab;
+      
+      // Remover active de todos
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      
+      // Ativar o selecionado
+      btn.classList.add('active');
+      $(`#panel-${targetTab}`)?.classList.add('active');
+      
+      Tracking.track('tab_clicked', { tab: targetTab });
     });
+  });
+  
+  // Botões "Ver simulação" nos cards de perfil
 
-    // Botões "Ver Simulação"
-    $$('[data-simulate]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const type = btn.dataset.simulate;
-        
-        // Ativar tab correspondente
-        tabs.forEach(tab => {
-          if (tab.dataset.tab === type) {
-            tab.click();
-          }
-        });
-        
-        // Scroll para simulador
-        const simulatorSection = $('#como-funciona');
-        if (simulatorSection) {
-          simulatorSection.scrollIntoView({ behavior: 'smooth' });
-        }
-        
-        Tracking.track('simulate_button_click', { type });
-      });
-    });
-  }
-
-  // ============================================
-  // FORMULÁRIO (VALIDAÇÃO & SUBMIT) - CORRIGIDO!
-  // ============================================
-  function initForm() {
-    const form = $('#waitlistForm');
-    if (!form) return;
-
-    // Preencher campos hidden ANTES do submit
-    function updateHiddenFields() {
-      const userTypeSelect = $('#user_type');
-      const userType = userTypeSelect ? userTypeSelect.value : '';
-      
-      // User ID
-      if ($('#user_id')) {
-        $('#user_id').value = getUserId();
-      }
-      
-      // Referrer ID
-      if ($('#referrer_id')) {
-        $('#referrer_id').value = getReferrerId();
-      }
-      
-      // Créditos iniciais
-      if ($('#credits_initial')) {
-        let credits = 0;
-        if (userType === 'Motorista') {
-          credits = CONFIG.CREDITS_MOTORISTA;
-        } else if (userType === 'Transportadora') {
-          credits = CONFIG.CREDITS_TRANSPORTADORA;
-        } else if (userType === 'Chapa / Ajudante') {
-          credits = CONFIG.CREDITS_CHAPA;
-        }
-        $('#credits_initial').value = credits;
-      }
-      
-      // Timestamp aceite de termos
-      if ($('#terms_accepted_at')) {
-        $('#terms_accepted_at').value = new Date().toISOString();
-      }
-      
-      // Journey summary
-      if ($('#user_journey')) {
-        $('#user_journey').value = JSON.stringify(Tracking.getSummary());
-      }
-    }
-
-    // Validação em tempo real
-    const whatsappInput = $('#whatsapp');
-    const inviteInput = $('#invite_phone');
-
-    [whatsappInput, inviteInput].forEach(input => {
-      if (!input) return;
-      input.addEventListener('input', (e) => {
-        // Permitir apenas números
-        e.target.value = e.target.value.replace(/\D/g, '');
-      });
-    });
-
-    // Submit - VERSÃO CORRIGIDA
-    form.addEventListener('submit', (e) => {
+  $$('.btn-simulate').forEach(btn => {
+    btn.addEventListener('click', (e) => {
       e.preventDefault();
-
-      // Validações
-      const userType = $('#user_type').value;
-      const name = $('#name').value.trim();
-      const whatsapp = $('#whatsapp').value.trim();
-      const email = $('#email').value.trim();
-      const uf = $('#uf').value;
-      const city = $('#city').value.trim();
-      const terms = $('#terms').checked;
-
-      if (!userType || !name || !whatsapp || !email || !uf || !city || !terms) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
-        return;
-      }
-
-      // Validar WhatsApp (10 ou 11 dígitos)
-      if (whatsapp.length < 10 || whatsapp.length > 11) {
-        alert('WhatsApp inválido. Digite DDD + número (10 ou 11 dígitos).');
-        $('#whatsapp').focus();
-        return;
-      }
-
-      // Validar email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        alert('E-mail inválido.');
-        $('#email').focus();
-        return;
-      }
-
-      // Atualizar campos hidden
-      updateHiddenFields();
-
-      // Tracking
-      Tracking.track('form_submit_attempt', {
-        user_type: userType,
-        uf,
-        city
-      });
-
-      // Desabilitar botão
-      const submitBtn = $('#submitBtn');
-      const btnText = submitBtn.querySelector('.btn-text');
-      const btnLoading = submitBtn.querySelector('.btn-loading');
+      const target = btn.dataset.target;
       
-      submitBtn.disabled = true;
-      if (btnText) btnText.style.display = 'none';
-      if (btnLoading) btnLoading.style.display = 'inline';
-
-      // FIX: Submit nativo do Netlify Forms
-      // Criar FormData com todos os campos
-      const formData = new FormData(form);
+      // Scroll para a seção de simuladores
+      $('#como-funciona')?.scrollIntoView({ behavior: 'smooth' });
       
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(response => {
-        if (response.ok) {
-          Tracking.track('form_submit_success', { user_type: userType });
-          
-          // Mostrar modal de sucesso
-          showSuccessModal();
-          
-          // Reset form
-          form.reset();
-        } else {
-          throw new Error('Erro no envio');
-        }
-      })
-      .catch(error => {
-        console.error('Erro:', error);
-        alert('Ocorreu um erro ao enviar o formulário. Por favor, tente novamente.');
-        Tracking.track('form_submit_error', { error: error.message });
-      })
-      .finally(() => {
-        submitBtn.disabled = false;
-        if (btnText) btnText.style.display = 'inline';
-        if (btnLoading) btnLoading.style.display = 'none';
-      });
+      // Ativar a tab correta após scroll
+      setTimeout(() => {
+        const targetBtn = $(`.tab-btn[data-tab="${target}"]`);
+        if (targetBtn) targetBtn.click();
+      }, 600);
+      
+      Tracking.track('simulate_clicked', { profile: target });
     });
-  }
+  });
+}
 
-  // ============================================
-  // MODAL SUCESSO
-  // ============================================
-  function showSuccessModal() {
-    const modal = $('#successModal');
-    const userId = getUserId();
+// ========================================
+// FORM — VALIDAÇÃO E ENVIO NATIVO
+// ========================================
+function initForm() {
+  const form = $('#waitlistForm');
+  if (!form) return;
+  
+  // Preencher campos hidden ANTES do submit
+  const userId = Utils.getOrCreateUserID();
+  const referrerId = Utils.getReferrerID();
+  
+  console.log('🆔 User ID:', userId);
+  if (referrerId) console.log('👥 Referrer:', referrerId);
+  
+  $('#user_id').value = userId;
+  $('#referrer_id').value = referrerId;
+  
+  // Validação de WhatsApp em tempo real
+  const whatsappInput = $('#whatsapp');
+  const inviteInput = $('#invite_phone');
+  
+  [whatsappInput, inviteInput].forEach(input => {
+    if (!input) return;
+    input.addEventListener('input', (e) => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+  });
+  
+  // Submit — DEIXAR O NETLIFY PROCESSAR NATIVAMENTE
+  form.addEventListener('submit', (e) => {
+    // Validar campos
+    const userType = $('#user_type').value;
+    const name = $('#name').value.trim();
+    const whatsapp = $('#whatsapp').value.trim();
+    const email = $('#email').value.trim();
+    const uf = $('#uf').value;
+    const city = $('#city').value.trim();
+    const terms = $('#terms').checked;
     
-    if (!modal) return;
-
-    // Preencher user ID
-    const userIdSpan = $('#modalUserId');
-    if (userIdSpan) {
-      userIdSpan.textContent = userId;
-    }
-
-    modal.classList.add('active');
-
-    // Botão fechar
-    const closeBtn = $('#modalClose');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        modal.classList.remove('active');
-      });
-    }
-
-    // Overlay fechar
-    const overlay = modal.querySelector('.modal-overlay');
-    if (overlay) {
-      overlay.addEventListener('click', () => {
-        modal.classList.remove('active');
-      });
-    }
-
-    // Botão WhatsApp grupo
-    const joinWhatsappBtn = $('#joinWhatsappBtn');
-    if (joinWhatsappBtn) {
-      joinWhatsappBtn.addEventListener('click', () => {
-        window.open(CONFIG.WA_GROUP, '_blank');
-        Tracking.track('join_whatsapp_group');
-      });
-    }
-
-    // Botão convidar amigos
-    const inviteFriendsBtn = $('#inviteFriendsBtn');
-    if (inviteFriendsBtn) {
-      inviteFriendsBtn.addEventListener('click', () => {
-        const shareUrl = `${window.location.origin}?ref=${userId}`;
-        const shareText = `Estou no Beta do LOOMPER! 🚀\n\nCadastre-se também: ${shareUrl}`;
-        
-        if (navigator.share) {
-          navigator.share({
-            title: 'LOOMPER Beta',
-            text: shareText
-          }).catch(() => {});
-        } else {
-          // Copiar para clipboard
-          navigator.clipboard.writeText(shareText).then(() => {
-            alert('Link copiado! Compartilhe com seus amigos.');
-          });
-        }
-        
-        Tracking.track('share_invite_link', { user_id: userId });
-      });
-    }
-  }
-
-  // ============================================
-  // PIX
-  // ============================================
-  function initPix() {
-    const copyBtn = $('#copyPixBtn');
-    const showQrBtn = $('#showQrBtn');
-    const pixQr = $('#pixQr');
-
-    if (copyBtn) {
-      copyBtn.addEventListener('click', () => {
-        navigator.clipboard.writeText(CONFIG.PIX_KEY).then(() => {
-          copyBtn.textContent = '✅ Copiado!';
-          setTimeout(() => {
-            copyBtn.textContent = '📋 Copiar Chave PIX';
-          }, 2000);
-          Tracking.track('pix_copy');
-        });
-      });
-    }
-
-    if (showQrBtn && pixQr) {
-      showQrBtn.addEventListener('click', () => {
-        if (pixQr.style.display === 'none' || pixQr.style.display === '') {
-          const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(CONFIG.PIX_KEY)}`;
-          pixQr.innerHTML = `<img src="${qrUrl}" alt="QR Code PIX">`;
-          pixQr.style.display = 'block';
-          showQrBtn.textContent = '❌ Fechar QR Code';
-          Tracking.track('pix_qr_show');
-        } else {
-          pixQr.style.display = 'none';
-          showQrBtn.textContent = '📱 Ver QR Code';
-        }
-      });
-    }
-  }
-
-  // ============================================
-  // WHATSAPP FAB
-  // ============================================
-  function initWhatsAppFab() {
-    const fab = $('#whatsappFab');
-    if (!fab) return;
-
-    fab.addEventListener('click', (e) => {
+    if (!userType || !name || !whatsapp || !email || !uf || !city || !terms) {
       e.preventDefault();
-      const userId = getUserId();
-      const message = `Olá! Me cadastrei no Beta LOOMPER.\n\nMeu ID: ${userId}`;
-      const url = `https://wa.me/${CONFIG.WA_NUMBER}?text=${encodeURIComponent(message)}`;
-      window.open(url, '_blank');
-      Tracking.track('whatsapp_fab_click');
-    });
-  }
-
-  // ============================================
-  // REFERRER TRACKING
-  // ============================================
-  function trackReferrer() {
-    const referrer = getReferrerId();
-    if (referrer !== 'direct') {
-      Tracking.track('referrer_visit', { referrer_id: referrer });
+      alert('Por favor, preencha todos os campos obrigatórios.');
+      return false;
     }
-  }
-
-  // ============================================
-  // INIT
-  // ============================================
-  function init() {
-    Tracking.init();
-    trackReferrer();
-    initHeader();
-    initMobileMenu();
-    initSmoothScroll();
-    initProfileSelection();
-    initSimulators();
-    initForm();
-    initPix();
-    initWhatsAppFab();
-
-    // Track page view
-    Tracking.track('page_view', {
-      url: window.location.href,
-      referrer: document.referrer
+    
+    // Validar WhatsApp
+    if (whatsapp.length < 10 || whatsapp.length > 11) {
+      e.preventDefault();
+      alert('WhatsApp inválido. Digite DDD + número (10 ou 11 dígitos).');
+      $('#whatsapp').focus();
+      return false;
+    }
+    
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      e.preventDefault();
+      alert('E-mail inválido.');
+      $('#email').focus();
+      return false;
+    }
+    
+    // Calcular créditos iniciais
+    let credits = 0;
+    if (userType === 'Motorista') {
+      credits = CONFIG.CREDITS_MOTORISTA;
+    } else if (userType === 'Transportadora') {
+      credits = CONFIG.CREDITS_TRANSPORTADORA;
+    } else if (userType === 'Chapa / Ajudante') {
+      credits = CONFIG.CREDITS_CHAPA;
+    }
+    $('#credits_initial').value = credits;
+    
+    // Timestamp aceite de termos
+    $('#terms_accepted_at').value = new Date().toISOString();
+    
+    // Journey summary
+    $('#user_journey').value = JSON.stringify(Tracking.getSummary());
+    
+    // Tracking
+    Tracking.track('form_submit_attempt', {
+      user_type: userType,
+      uf,
+      city
     });
+    
+    // Desabilitar botão
+    const submitBtn = $('#submitBtn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    
+    // DEIXAR O FORM SUBMETER NATIVAMENTE
+    // O Netlify vai redirecionar automaticamente após o sucesso
+    return true;
+  });
+}
 
-    console.log('%c✅ LOOMPER Optimized JS Ativo', 'color: #ff7a2d; font-weight: bold; font-size: 14px;');
-    console.log('%cUser ID:', 'color: #cfa34a; font-weight: bold;', getUserId());
+// ========================================
+// PIX DONATION
+// ========================================
+function initPixDonation() {
+  const copyPixBtn = $('#copyPix');
+  const showQrBtn = $('#showQr');
+  const pixQrDiv = $('#pixQr');
+  const donateOtherBtn = $('#donateOther');
+  const customAmountDiv = $('#customAmount');
+  const confirmAmountBtn = $('#confirmAmount');
+  
+  // Copiar PIX
+  if (copyPixBtn) {
+    copyPixBtn.addEventListener('click', () => {
+      const pixKey = CONFIG.PIX_KEY;
+      navigator.clipboard.writeText(pixKey).then(() => {
+        copyPixBtn.textContent = '✓ Copiado!';
+        setTimeout(() => {
+          copyPixBtn.textContent = 'Copiar PIX';
+        }, 2000);
+        
+        Tracking.track('pix_copied', { key: pixKey });
+      });
+    });
   }
-
-  // ============================================
-  // EXECUTAR QUANDO DOM ESTIVER PRONTO
-  // ============================================
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  
+  // Mostrar QR Code
+  if (showQrBtn && pixQrDiv) {
+    showQrBtn.addEventListener('click', () => {
+      const isVisible = pixQrDiv.style.display !== 'none';
+      pixQrDiv.style.display = isVisible ? 'none' : 'block';
+      showQrBtn.textContent = isVisible ? 'Ver QR Code' : 'Ocultar QR';
+      
+      if (!isVisible) {
+        // Gerar QR Code (usando API gratuita)
+        const pixKey = CONFIG.PIX_KEY;
+        const qrUrl = `https://chart.googleapis.com/chart?chs=250x250&cht=qr&chl=${encodeURIComponent(pixKey)}`;
+        pixQrDiv.innerHTML = `<img src="${qrUrl}" alt="QR Code PIX" />`;
+        
+        Tracking.track('qr_code_shown');
+      }
+    });
   }
+  
+  // Botões de valores fixos
 
-})();
+  $$('.btn-donate').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const amount = btn.dataset.amount;
+      alert(`Obrigado! Por favor, faça uma transferência PIX de R$ ${amount} para: ${CONFIG.PIX_KEY}`);
+      
+      Tracking.track('donation_selected', { amount });
+    });
+  });
+  
+  // Outro valor
+  if (donateOtherBtn && customAmountDiv) {
+    donateOtherBtn.addEventListener('click', () => {
+      customAmountDiv.style.display = 'flex';
+      donateOtherBtn.style.display = 'none';
+    });
+  }
+  
+  if (confirmAmountBtn) {
+    confirmAmountBtn.addEventListener('click', () => {
+      const customAmount = $('#customAmountInput').value;
+      if (customAmount && customAmount > 0) {
+        alert(`Obrigado! Por favor, faça uma transferência PIX de R$ ${customAmount} para: ${CONFIG.PIX_KEY}`);
+        
+        Tracking.track('donation_custom', { amount: customAmount });
+        
+        customAmountDiv.style.display = 'none';
+        donateOtherBtn.style.display = 'inline-block';
+        $('#customAmountInput').value = '';
+      } else {
+        alert('Por favor, digite um valor válido.');
+      }
+    });
+  }
+}
+
+// ========================================
+// WHATSAPP FAB
+// ========================================
+function initWhatsAppFAB() {
+  const fab = $('#whatsappFab');
+  if (!fab) return;
+  
+  const userId = Utils.getOrCreateUserID();
+  const message = `Olá! Vim da landing page do Loomper Beta.\n\nMeu ID: ${userId}`;
+  
+  fab.href = Utils.formatWhatsAppLink(CONFIG.WHATSAPP_NUMBER, message);
+  
+  fab.addEventListener('click', () => {
+    Tracking.track('whatsapp_fab_clicked', { user_id: userId });
+  });
+}
+
+// ========================================
+// SUCCESS MODAL (se houver)
+// ========================================
+function initSuccessModal() {
+  const modal = $('#successModal');
+  if (!modal) return;
+  
+  const closeBtn = $('#modalClose');
+  const enterWhatsappBtn = $('#enterWhatsapp');
+  const inviteFriendsBtn = $('#inviteFriends');
+  
+  // Fechar modal
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      modal.setAttribute('aria-hidden', 'true');
+      modal.style.display = 'none';
+    });
+  }
+  
+  // Entrar no WhatsApp
+  if (enterWhatsappBtn) {
+    enterWhatsappBtn.addEventListener('click', () => {
+      const userId = Utils.getOrCreateUserID();
+      const message = `Olá! Acabei de me cadastrar no Beta do Loomper.\n\nMeu ID: ${userId}`;
+      window.open(Utils.formatWhatsAppLink(CONFIG.WHATSAPP_NUMBER, message), '_blank');
+      
+      Tracking.track('enter_whatsapp_group');
+    });
+  }
+  
+  // Convidar amigos
+  if (inviteFriendsBtn) {
+    inviteFriendsBtn.addEventListener('click', () => {
+      const userId = Utils.getOrCreateUserID();
+      const inviteLink = `${CONFIG.DOMAIN}?ref=${userId}`;
+      const shareMessage = `Olá! Estou no Beta fechado do LOOMPER, a evolução da conexão no transporte de veículos.\n\nEntre você também: ${inviteLink}`;
+      
+      navigator.clipboard.writeText(shareMessage).then(() => {
+        alert('✓ Link de convite copiado! Compartilhe com seus amigos.');
+        
+        Tracking.track('invite_link_copied', { referrer_id: userId });
+      });
+    });
+  }
+}
+
+// ========================================
+// INIT
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('🚀 LOOMPER Optimized JS v2.0 Ativo');
+  
+  initHeader();
+  initMobileMenu();
+  initProfileSelection();
+  initTabs();
+  initForm();
+  initPixDonation();
+  initWhatsAppFAB();
+  initSuccessModal();
+  
+  // Track page view
+  Tracking.track('page_view', {
+    url: window.location.href,
+    referrer: document.referrer
+  });
+  
+  console.log('✅ Todas as funcionalidades carregadas');
+});
