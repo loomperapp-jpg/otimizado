@@ -1,29 +1,7 @@
 [build]
   publish = "."
-  command = ""
 
-[functions]
-  directory = "netlify/functions"
-
-# === Redirect específico para sucesso (PRIMEIRO) ===
-[[redirects]]
-  from = "/sucesso.html"
-  to = "/sucesso.html"
-  status = 200
-
-# === API Functions ===
-[[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# === Fallback SPA (ÚLTIMO) ===
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# === Headers de segurança ===
+# Segurança básica
 [[headers]]
   for = "/*"
   [headers.values]
