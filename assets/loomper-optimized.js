@@ -1,7 +1,8 @@
 /**
  * =========================================================
- * LOOMPER OPTIMIZED JAVASCRIPT
+ * LOOMPER OPTIMIZED JAVASCRIPT - VERSÃO CORRIGIDA
  * Tracking completo, validação, integrações preparadas
+ * FIX: Netlify Forms agora funciona corretamente
  * =========================================================
  */
 
@@ -234,15 +235,50 @@
   }
 
   // ============================================
-  // FORMULÁRIO (VALIDAÇÃO & SUBMIT)
+  // FORMULÁRIO (VALIDAÇÃO & SUBMIT) - CORRIGIDO!
   // ============================================
   function initForm() {
     const form = $('#waitlistForm');
     if (!form) return;
 
-    // Preencher campos hidden
-    $('#user_id').value = getUserId();
-    $('#referrer_id').value = getReferrerId();
+    // Preencher campos hidden ANTES do submit
+    function updateHiddenFields() {
+      const userTypeSelect = $('#user_type');
+      const userType = userTypeSelect ? userTypeSelect.value : '';
+      
+      // User ID
+      if ($('#user_id')) {
+        $('#user_id').value = getUserId();
+      }
+      
+      // Referrer ID
+      if ($('#referrer_id')) {
+        $('#referrer_id').value = getReferrerId();
+      }
+      
+      // Créditos iniciais
+      if ($('#credits_initial')) {
+        let credits = 0;
+        if (userType === 'Motorista') {
+          credits = CONFIG.CREDITS_MOTORISTA;
+        } else if (userType === 'Transportadora') {
+          credits = CONFIG.CREDITS_TRANSPORTADORA;
+        } else if (userType === 'Chapa / Ajudante') {
+          credits = CONFIG.CREDITS_CHAPA;
+        }
+        $('#credits_initial').value = credits;
+      }
+      
+      // Timestamp aceite de termos
+      if ($('#terms_accepted_at')) {
+        $('#terms_accepted_at').value = new Date().toISOString();
+      }
+      
+      // Journey summary
+      if ($('#user_journey')) {
+        $('#user_journey').value = JSON.stringify(Tracking.getSummary());
+      }
+    }
 
     // Validação em tempo real
     const whatsappInput = $('#whatsapp');
@@ -256,7 +292,7 @@
       });
     });
 
-    // Submit
+    // Submit - VERSÃO CORRIGIDA
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
@@ -289,22 +325,8 @@
         return;
       }
 
-      // Calcular créditos iniciais
-      let credits = 0;
-      if (userType === 'Motorista') {
-        credits = CONFIG.CREDITS_MOTORISTA;
-      } else if (userType === 'Transportadora') {
-        credits = CONFIG.CREDITS_TRANSPORTADORA;
-      } else if (userType === 'Chapa / Ajudante') {
-        credits = CONFIG.CREDITS_CHAPA;
-      }
-      $('#credits_initial').value = credits;
-
-      // Timestamp aceite de termos
-      $('#terms_accepted_at').value = new Date().toISOString();
-
-      // Journey summary
-      $('#user_journey').value = JSON.stringify(Tracking.getSummary());
+      // Atualizar campos hidden
+      updateHiddenFields();
 
       // Tracking
       Tracking.track('form_submit_attempt', {
@@ -319,14 +341,17 @@
       const btnLoading = submitBtn.querySelector('.btn-loading');
       
       submitBtn.disabled = true;
-      btnText.style.display = 'none';
-      btnLoading.style.display = 'inline';
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoading) btnLoading.style.display = 'inline';
 
-      // Submit via Netlify
+      // FIX: Submit nativo do Netlify Forms
+      // Criar FormData com todos os campos
+      const formData = new FormData(form);
+      
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(form)).toString()
+        body: new URLSearchParams(formData).toString()
       })
       .then(response => {
         if (response.ok) {
@@ -348,8 +373,8 @@
       })
       .finally(() => {
         submitBtn.disabled = false;
-        btnText.style.display = 'inline';
-        btnLoading.style.display = 'none';
+        if (btnText) btnText.style.display = 'inline';
+        if (btnLoading) btnLoading.style.display = 'none';
       });
     });
   }
@@ -442,7 +467,7 @@
 
     if (showQrBtn && pixQr) {
       showQrBtn.addEventListener('click', () => {
-        if (pixQr.style.display === 'none') {
+        if (pixQr.style.display === 'none' || pixQr.style.display === '') {
           const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(CONFIG.PIX_KEY)}`;
           pixQr.innerHTML = `<img src="${qrUrl}" alt="QR Code PIX">`;
           pixQr.style.display = 'block';
