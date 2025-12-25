@@ -1,0 +1,8 @@
+{
+  "name": "loomper-landing",
+  "version": "1.0.0",
+  "description": "Landing page LOOMPER Beta",
+  "dependencies": {
+    "nodemailer": "^6.9.7"
+  }
+}
