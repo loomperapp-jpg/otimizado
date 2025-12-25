@@ -24,3 +24,14 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Para formulários avançarem
+    [[redirects]]
+  from = "/sucesso.html"
+  to = "/sucesso.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
