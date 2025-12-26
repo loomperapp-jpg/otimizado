@@ -3,1048 +3,818 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Loomper - Conectando motoristas de cegonha e chapas com dignidade e tecnologia. Plataforma que transforma trabalho invisível em profissão com recorrência e reputação.">
-    <meta name="keywords" content="transporte de veículos, cegonha, motorista, chapa, ajudante, logística, Brasil">
-    <meta name="author" content="Loomper - Grupo Ajud.AI">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Loomper - A evolução da conexão no transporte de veículos">
-    <meta property="og:description" content="Conectamos motoristas e chapas com dignidade, segurança e tecnologia.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://v3.netlify.app">
-    <meta property="og:image" content="./images/loomper_logo_semfundo.PNG">
-    
-    <title>Loomper - Transporte de Veículos com Dignidade e Tecnologia</title>
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="./assets/loomper-optimized.css">
+    <meta name="description" content="LOOMPER - A evolução da conexão no transporte de veículos. Plataforma que conecta motoristas, chapas e transportadoras.">
+    <meta name="keywords" content="transporte de veículos, cegonha, motorista, chapa, logística, LOOMPER">
+    <title>LOOMPER - A evolução da conexão no transporte de veículos</title>
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="./images/icon-l.png">
+    <link rel="icon" type="image/png" href="assets/images/icon-l.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/loomper-optimized.css">
+    
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://servicodados.ibge.gov.br">
 </head>
 <body>
 
-    <!-- ========== HEADER ========== -->
-    <header class="header" id="header">
-        <div class="container">
-            <div class="header-content">
-                <!-- Logo -->
-                <a href="#home" class="logo-link">
-                    <img src="./images/loomper_logo_semfundo.PNG" alt="Loomper" class="logo">
-                </a>
-                
-                <!-- Hamburger Menu -->
-                <button class="hamburger" id="hamburger" aria-label="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                
-                <!-- Navigation Menu -->
-                <nav class="nav-menu" id="navMenu">
-                    <a href="#o-que-e" class="nav-link">O que é</a>
-                    <a href="#para-quem" class="nav-link">Para quem</a>
-                    <a href="#como-funciona" class="nav-link">Como funciona</a>
-                    <a href="#pioneiros" class="nav-link">Pioneiros</a>
-                    <a href="#cadastro" class="btn-nav-cta">Cadastre-se</a>
-                </nav>
-            </div>
+    <!-- ============================================
+         BARRA DE PROGRESSO
+         ============================================ -->
+    <div class="progress-bar"></div>
+
+    <!-- ============================================
+         HEADER COM MENU HAMBURGER
+         ============================================ -->
+    <header class="header">
+        <div class="header-container">
+            <!-- Logo (CORRIGIDO: Tamanho proporcional) -->
+            <a href="#home" class="logo-link">
+                <img src="assets/images/loomper_logo_semfundo.PNG" alt="LOOMPER" class="header-logo">
+            </a>
+
+            <!-- Menu Desktop/Mobile -->
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#entenda" class="nav-link">O que é</a></li>
+                    <li><a href="#perfis" class="nav-link">Para quem</a></li>
+                    <li><a href="#como-funciona" class="nav-link">Como funciona</a></li>
+                    <li><a href="#beta" class="nav-link">Beta Fechado</a></li>
+                    <li><a href="#cadastro" class="nav-link btn-nav-cta">Cadastre-se</a></li>
+                </ul>
+            </nav>
+
+            <!-- Hamburger Menu (Mobile) -->
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <!-- ========== HERO SECTION ========== -->
-    <section class="hero" id="home">
-        <div class="hero-background">
-            <img src="./images/hero-truck.png" alt="Caminhão cegonha" class="hero-bg-image">
-        </div>
-        
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-tag">Versão Beta • Acesso Fechado</span>
-                
-                <h1 class="hero-title">
-                    Transporte de Veículos<br>
-                    <span class="highlight">Direto e Seguro</span>
-                </h1>
-                
-                <p class="hero-subtitle">
-                    Conectamos motoristas de cegonha e chapas em tempo real.<br>
-                    Agilidade, segurança e dignidade para quem move o Brasil.
-                </p>
-                
-                <div class="hero-benefits">
-                    <div class="benefit-item">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span>Verificado</span>
-                    </div>
-                    <div class="benefit-item">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                        </svg>
-                        <span>Em 2 minutos</span>
-                    </div>
-                    <div class="benefit-item">
-                        <svg class="benefit-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        <span>Economia real</span>
-                    </div>
-                </div>
-                
-                <div class="hero-cta">
-                    <a href="#cadastro" class="btn-primary btn-large">Quero ser pioneiro</a>
-                    <a href="#como-funciona" class="btn-secondary btn-large">Como funciona</a>
-                </div>
+    <!-- ============================================
+         HERO SECTION (CORRIGIDO: Marca d'água)
+         ============================================ -->
+    <section id="home" class="hero" data-section-name="Início">
+        <div class="hero-content">
+            <h1>
+                A evolução da conexão no
+                <span class="highlight">transporte de veículos</span>
+            </h1>
+            <p class="subtitle">
+                Conectamos motoristas, chapas e transportadoras para tornar a logística mais ágil, segura e rentável.
+            </p>
+            <div class="hero-ctas">
+                <a href="#cadastro" class="btn btn-primary btn-lg">
+                    Quero ser pioneiro
+                </a>
+                <a href="#entenda" class="btn btn-secondary btn-lg">
+                    Saiba mais
+                </a>
             </div>
-        </div>
-        
-        <!-- Indicador de scroll -->
-        <div class="scroll-indicator">
-            <span>Role para saber mais</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-            </svg>
         </div>
     </section>
 
-    <!-- ========== SEÇÃO: O QUE É ========== -->
-    <section class="section section-entenda" id="o-que-e">
+    <!-- ============================================
+         SEÇÃO: ENTENDA (COM FLUXO VISUAL)
+         ============================================ -->
+    <section id="entenda" class="section section-dark" data-section-name="Entenda">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">ENTENDA</span>
-                <h2 class="section-title">O Loomper nasce onde a logística<br>realmente acontece</h2>
+                <span class="section-label">ENTENDA</span>
+                <h2>O Loomper nasce onde a logística realmente acontece</h2>
                 <p class="section-subtitle">
-                    Criado a partir da escuta de quem está na coleta e entrega todos os dias.
+                    Criado a partir da escuta de quem está na estrada todos os dias
                 </p>
             </div>
-            
-            <div class="flow-visual">
+
+            <!-- FLUXO VISUAL (SUBSTITUINDO TEXTO LONGO) -->
+            <div class="flow-diagram">
                 <div class="flow-step">
-                    <div class="flow-icon">
+                    <div class="step-number">1</div>
+                    <div class="icon-wrapper">
+                        <!-- Ícone SVG: Escuta -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/>
+                            <path d="M12 6v6l4 2"/>
                         </svg>
                     </div>
-                    <h3>Motorista precisa de ajudante</h3>
-                    <p>Caminhões cegonha (22,5m) precisam de guias locais. Não existe "Waze para cegonha".</p>
+                    <h4>Escutamos a dor</h4>
+                    <p>Motoristas, chapas e transportadoras relatam suas dificuldades</p>
                 </div>
-                
-                <div class="flow-arrow">→</div>
-                
+
                 <div class="flow-step">
-                    <div class="flow-icon">
+                    <div class="step-number">2</div>
+                    <div class="icon-wrapper">
+                        <!-- Ícone SVG: Conexão -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M3 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/>
+                            <circle cx="16" cy="11" r="3"/>
+                            <path d="M22 21v-2a3 3 0 0 0-3-3h-2"/>
                         </svg>
                     </div>
-                    <h3>Loomper conecta em tempo real</h3>
-                    <p>Matching inteligente entre motoristas e chapas verificados na região.</p>
+                    <h4>Conectamos</h4>
+                    <p>Plataforma inteligente une os atores da logística</p>
                 </div>
-                
-                <div class="flow-arrow">→</div>
-                
+
                 <div class="flow-step">
-                    <div class="flow-icon">
+                    <div class="step-number">3</div>
+                    <div class="icon-wrapper">
+                        <!-- Ícone SVG: Crescimento -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
                         </svg>
                     </div>
-                    <h3>Ecossistema colaborativo</h3>
-                    <p>Avaliações mútuas, histórico transparente e dignidade profissional.</p>
+                    <h4>Geramos impacto</h4>
+                    <p>Mais renda, menos espera, serviço com garantia</p>
+                </div>
+            </div>
+
+            <!-- 3 CARDS DE BENEFÍCIOS -->
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <!-- Ícone SVG: Avaliação -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </div>
+                    <h3>Sistema de avaliação</h3>
+                    <p>Construa sua reputação e histórico transparente</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <!-- Ícone SVG: Pagamento -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="5" width="20" height="14" rx="2"/>
+                            <line x1="2" y1="10" x2="22" y2="10"/>
+                        </svg>
+                    </div>
+                    <h3>Pagamento garantido</h3>
+                    <p>Segurança e rastreamento em cada serviço</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="icon-wrapper">
+                        <!-- Ícone SVG: Dashboard -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="12" y1="20" x2="12" y2="10"/>
+                            <line x1="18" y1="20" x2="18" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="16"/>
+                        </svg>
+                    </div>
+                    <h3>Gestão em tempo real</h3>
+                    <p>Dashboards e métricas para otimizar operações</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== SEÇÃO: PARA QUEM ========== -->
-    <section class="section section-perfis" id="para-quem">
+    <!-- ============================================
+         SEÇÃO: PARA QUEM (TABS FUNCIONAIS)
+         ============================================ -->
+    <section id="perfis" class="section section-light" data-section-name="Para quem">
         <div class="container">
             <div class="section-header">
-                <span class="section-tag">PARA QUEM</span>
-                <h2 class="section-title">Escolha seu perfil e veja como ganhar mais</h2>
+                <span class="section-label">PARA QUEM</span>
+                <h2>Escolha seu perfil e veja como ganhar mais</h2>
             </div>
-            
-            <!-- Tabs -->
-            <div class="profile-tabs">
-                <button class="tab active" data-profile="motorista">
-                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8.5 5.5L5 9h14l-3.5-3.5z"/>
-                        <path d="M20 10h-3v4H7v-4H4v10h16V10z"/>
-                    </svg>
-                    <span>Motorista</span>
-                </button>
-                
-                <button class="tab" data-profile="chapa">
-                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-                    </svg>
-                    <span>Chapa / Ajudante</span>
-                </button>
-                
-                <button class="tab" data-profile="transportadora">
-                    <svg class="tab-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                    </svg>
-                    <span>Transportadora</span>
-                </button>
-            </div>
-            
-            <!-- Conteúdo por perfil -->
-            <div class="profile-content">
-                <!-- MOTORISTA -->
-                <div class="profile-panel active" id="motorista-content">
-                    <div class="profile-grid">
-                        <div class="profile-info">
-                            <h3>Para Motoristas de Cegonha</h3>
-                            <p class="profile-description">
-                                Encontre chapas verificados no momento certo. 
-                                Reduza tempo de procura e aumente suas entregas.
-                            </p>
-                            
-                            <div class="benefits-list">
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">💵</div>
-                                    <div>
-                                        <h4>Economize até R$ 1.200/mês</h4>
-                                        <p>Reduza 2h por entrega procurando ajudante</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">📦</div>
-                                    <div>
-                                        <h4>Rode 20% mais por mês</h4>
-                                        <p>Entregas mais rápidas = mais trabalhos</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">⭐</div>
-                                    <div>
-                                        <h4>Chapas verificados</h4>
-                                        <p>Histórico transparente e avaliações reais</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="button-group">
-                                <a href="#cadastro" class="btn-primary">Quero participar</a>
-                                <button class="btn-secondary" onclick="openSimulacaoModal('motorista')">Ver simulação</button>
-                            </div>
-                        </div>
-                        
-                        <div class="profile-visual">
-                            <div class="mockup-card">
-                                <h4>Criar Vaga de Ajudante</h4>
-                                <div class="mockup-field">
-                                    <label>📍 Local</label>
-                                    <div class="mockup-value">São Paulo - SP</div>
-                                </div>
-                                <div class="mockup-field">
-                                    <label>📅 Data e Horário</label>
-                                    <div class="mockup-value">Hoje, 14:00</div>
-                                </div>
-                                <div class="mockup-field">
-                                    <label>💰 Valor oferecido</label>
-                                    <div class="mockup-value">R$ 200,00</div>
-                                </div>
-                                <div class="mockup-button">Publicar vaga</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CHAPA -->
-                <div class="profile-panel" id="chapa-content">
-                    <div class="profile-grid">
-                        <div class="profile-info">
-                            <h3>Para Chapas e Ajudantes</h3>
-                            <p class="profile-description">
-                                Receba notificações de vagas na sua região. 
-                                Construa agenda, reputação e renda recorrente.
-                            </p>
-                            
-                            <div class="benefits-list">
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">💰</div>
-                                    <div>
-                                        <h4>Ganhe até R$ 3.500/mês</h4>
-                                        <p>Recorrência de trabalhos + agenda organizada</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">📅</div>
-                                    <div>
-                                        <h4>Previsibilidade de renda</h4>
-                                        <p>Saiba seus próximos serviços com antecedência</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">🏆</div>
-                                    <div>
-                                        <h4>Construa sua reputação</h4>
-                                        <p>Avaliações positivas = mais oportunidades</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="button-group">
-                                <a href="#cadastro" class="btn-primary">Quero participar</a>
-                                <button class="btn-secondary" onclick="openSimulacaoModal('chapa')">Ver simulação</button>
-                            </div>
-                        </div>
-                        
-                        <div class="profile-visual">
-                            <div class="mockup-card">
-                                <h4>Vagas Disponíveis Próximas</h4>
-                                <div class="vaga-item">
-                                    <div class="vaga-header">
-                                        <strong>Descarga em Guarulhos</strong>
-                                        <span class="vaga-badge">R$ 200</span>
-                                    </div>
-                                    <div class="vaga-details">
-                                        <span>📍 3.5km de você</span>
-                                        <span>⏱️ Hoje, 14:00</span>
-                                    </div>
-                                    <div class="vaga-footer">
-                                        <span class="vaga-rating">⭐ 4.8 (João M.)</span>
-                                        <button class="btn-small">Aceitar</button>
-                                    </div>
-                                </div>
-                                <div class="vaga-item">
-                                    <div class="vaga-header">
-                                        <strong>Carga ABC Paulista</strong>
-                                        <span class="vaga-badge">R$ 250</span>
-                                    </div>
-                                    <div class="vaga-details">
-                                        <span>📍 8km de você</span>
-                                        <span>⏱️ Amanhã, 08:00</span>
-                                    </div>
-                                    <div class="vaga-footer">
-                                        <span class="vaga-rating">⭐ 5.0 (Carlos S.)</span>
-                                        <button class="btn-small">Aceitar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- TRANSPORTADORA -->
-                <div class="profile-panel" id="transportadora-content">
-                    <div class="profile-grid">
-                        <div class="profile-info">
-                            <h3>Para Transportadoras</h3>
-                            <p class="profile-description">
-                                Gestão completa da última milha. 
-                                Dashboards em tempo real e ROI mensurável.
-                            </p>
-                            
-                            <div class="benefits-list">
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">📊</div>
-                                    <div>
-                                        <h4>Otimize última milha</h4>
-                                        <p>Reduza tempo ocioso em até 35%</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">💵</div>
-                                    <div>
-                                        <h4>Fature 25% mais por mês</h4>
-                                        <p>Equipamentos rodando + entregas rápidas</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="benefit-card">
-                                    <div class="benefit-icon-box">📈</div>
-                                    <div>
-                                        <h4>Dashboards em tempo real</h4>
-                                        <p>KPIs, OKRs e controle total da operação</p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="button-group">
-                                <a href="#cadastro" class="btn-primary">Quero participar</a>
-                                <button class="btn-secondary" onclick="openSimulacaoModal('transportadora')">Ver simulação</button>
-                            </div>
-                        </div>
-                        
-                        <div class="profile-visual">
-                            <div class="mockup-card">
-                                <h4>Dashboard de Gestão</h4>
-                                <div class="kpi-grid">
-                                    <div class="kpi-item">
-                                        <div class="kpi-value">248</div>
-                                        <div class="kpi-label">Entregas/mês</div>
-                                    </div>
-                                    <div class="kpi-item">
-                                        <div class="kpi-value">3.2h</div>
-                                        <div class="kpi-label">Tempo médio</div>
-                                    </div>
-                                    <div class="kpi-item">
-                                        <div class="kpi-value">R$ 185</div>
-                                        <div class="kpi-label">Custo/entrega</div>
-                                    </div>
-                                    <div class="kpi-item">
-                                        <div class="kpi-value">4.7⭐</div>
-                                        <div class="kpi-label">Satisfação</div>
-                                    </div>
-                                </div>
-                                <div class="chart-placeholder">
-                                    <span>📈 Gráfico de performance</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- ========== SEÇÃO: BETA FECHADO ========== -->
-    <section class="section section-beta" id="pioneiros">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag blue">BETA FECHADO</span>
-                <h2 class="section-title">Primeiro é para poucos.<br>Depois, para o mercado.</h2>
-                <p class="section-subtitle">
-                    Você foi convidado. Esta é sua vantagem.
-                </p>
-            </div>
-            
-            <div class="beta-content">
-                <div class="beta-info">
-                    <div class="info-box">
-                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                        </svg>
-                        <div>
-                            <h3>Acesso Exclusivo por Convite</h3>
-                            <p>Você foi indicado por um pioneiro para testar o futuro do transporte de veículos no Brasil.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="timeline-box">
-                        <h3>Timeline do Projeto</h3>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <strong>Março/2026</strong>
-                                <span>Lançamento Beta Fechado</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-content">
-                                <strong>Junho/2026</strong>
-                                <span>Lançamento Oficial (App Stores)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="beta-benefits">
-                    <h3>O que você ganha como pioneiro</h3>
-                    
-                    <div class="pioneer-card">
-                        <div class="pioneer-icon">🏆</div>
-                        <div class="pioneer-content">
-                            <h4>Selo Pioneiro</h4>
-                            <p>Badge exclusivo e permanente no seu perfil. Você não será "só mais um".</p>
-                            <span class="pioneer-tag">Vitalício</span>
-                        </div>
-                    </div>
-                    
-                    <div class="pioneer-card">
-                        <div class="pioneer-icon">📈</div>
-                        <div class="pioneer-content">
-                            <h4>Vantagem Competitiva</h4>
-                            <p>Seus serviços no Beta contam no ranking. Inicie com histórico antes de milhares.</p>
-                            <span class="pioneer-tag">Estratégico</span>
-                        </div>
-                    </div>
-                    
-                    <div class="pioneer-card">
-                        <div class="pioneer-icon">🎯</div>
-                        <div class="pioneer-content">
-                            <h4>Acesso Prioritário</h4>
-                            <p>Novos recursos e promoções chegam primeiro para quem construiu desde o início.</p>
-                            <span class="pioneer-tag">Sempre na frente</span>
-                        </div>
-                    </div>
-                    
-                    <div class="pioneer-card">
-                        <div class="pioneer-icon">💬</div>
-                        <div class="pioneer-content">
-                            <h4>Construa Conosco</h4>
-                            <p>Grupo fechado com linha direta aos fundadores. Sua opinião molda o produto.</p>
-                            <span class="pioneer-tag">Influência real</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Contador de vagas -->
-            <div class="vacancy-counter">
-                <div class="counter-number">
-                    <span class="number-highlight">47</span>
-                    <span class="number-total">/200</span>
-                </div>
-                <p class="counter-label">pioneiros já estão construindo o Loomper</p>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 23.5%;"></div>
-                </div>
-                <p class="counter-note">🔒 Acesso fechado até Mar/2026</p>
-            </div>
-            
-            <div class="beta-cta">
-                <a href="#cadastro" class="btn-primary btn-large">Quero ser pioneiro</a>
-            </div>
-        </div>
-    </section>
+            <!-- TABS (CORRIGIDO: Ícones SVG) -->
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="tab-motorista">
+                    <!-- Ícone SVG: Caminhão -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                    Motorista
+                </button>
 
-    <!-- ========== SEÇÃO: APOIO ========== -->
-    <section class="section section-apoio" id="apoio">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag blue">TRANSPARÊNCIA</span>
-                <div class="heart-icon">💙</div>
-                <h2 class="section-title">Apoie quem move o Brasil</h2>
-                <p class="section-subtitle">
-                    Um projeto social bancado por quem acredita<br>
-                    na dignidade do trabalho invisível
-                </p>
+                <button class="tab-btn" data-tab="tab-chapa">
+                    <!-- Ícone SVG: Pessoa -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                    Chapa
+                </button>
+
+                <button class="tab-btn" data-tab="tab-transportadora">
+                    <!-- Ícone SVG: Prédio -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="4" y="2" width="16" height="20" rx="2" ry="2"/>
+                        <path d="M9 22v-4h6v4"/>
+                        <path d="M8 6h.01"/>
+                        <path d="M16 6h.01"/>
+                        <path d="M12 6h.01"/>
+                        <path d="M12 10h.01"/>
+                        <path d="M12 14h.01"/>
+                        <path d="M16 10h.01"/>
+                        <path d="M16 14h.01"/>
+                        <path d="M8 10h.01"/>
+                        <path d="M8 14h.01"/>
+                    </svg>
+                    Transportadora
+                </button>
             </div>
-            
-            <div class="apoio-story">
-                <div class="story-content">
-                    <h3>Por que precisamos de apoio?</h3>
-                    <p>
-                        O Loomper nasceu da escuta de quem está na estrada todos os dias. 
-                        <strong>Não temos investidores</strong>. Não temos patrocinadores.
-                    </p>
-                    <p>
-                        Cada linha de código, cada reunião jurídica, cada ferramenta de IA 
-                        que está moldando este projeto sai do <strong>orçamento familiar do fundador</strong>.
-                    </p>
-                    <p>
-                        São valores que poderiam estar sendo investidos em momentos com a família, 
-                        mas que hoje financiam um sonho: <strong>dar dignidade e recorrência de renda 
-                        a milhares de chapas e ajudantes</strong> que sustentam o transporte de veículos no Brasil.
-                    </p>
-                    
-                    <div class="mission-highlight">
-                        <p>
-                            <strong>🎯 Nossa missão</strong><br>
-                            Não cobraremos nada dos usuários no Beta. 
-                            Sua doação nos ajuda a manter esse compromisso e acelerar o lançamento.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Transparência financeira -->
-            <div class="financial-transparency">
-                <h3>📊 Transparência total: onde seu apoio é investido</h3>
-                
-                <div class="expense-breakdown">
-                    <div class="expense-item">
-                        <div class="expense-icon">💻</div>
-                        <div class="expense-details">
-                            <h4>Desenvolvimento</h4>
-                            <p>Hospedagem, APIs, ferramentas de IA, testes</p>
-                            <span class="expense-percentage">45%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="expense-item">
-                        <div class="expense-icon">⚖️</div>
-                        <div class="expense-details">
-                            <h4>Assessoria Jurídica</h4>
-                            <p>LGPD, contratos, proteção de marca</p>
-                            <span class="expense-percentage">25%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="expense-item">
-                        <div class="expense-icon">📈</div>
-                        <div class="expense-details">
-                            <h4>Contabilidade & Tributação</h4>
-                            <p>Adequação fiscal, abertura de empresa</p>
-                            <span class="expense-percentage">15%</span>
-                        </div>
-                    </div>
-                    
-                    <div class="expense-item">
-                        <div class="expense-icon">📢</div>
-                        <div class="expense-details">
-                            <h4>Marketing & Divulgação</h4>
-                            <p>Alcançar mais motoristas e chapas</p>
-                            <span class="expense-percentage">15%</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Progresso de meta -->
-                <div class="funding-progress">
-                    <div class="progress-header">
-                        <h4>Meta atual: Lançamento do Beta</h4>
-                        <span class="progress-amount">R$ 8.500 / R$ 25.000</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 34%;"></div>
-                    </div>
-                    <p class="progress-note">
-                        Com sua ajuda, chegamos a 34% da meta para o lançamento oficial
-                    </p>
-                </div>
-            </div>
-            
-            <!-- Impacto social -->
-            <div class="social-impact">
-                <h3>💪 Seu apoio gera impacto real</h3>
-                
-                <div class="impact-grid">
-                    <div class="impact-card">
-                        <div class="impact-number">2.500+</div>
-                        <p>Chapas cadastrados na pré-lista</p>
-                    </div>
-                    
-                    <div class="impact-card">
-                        <div class="impact-number">R$ 1.200</div>
-                        <p>Economia média por motorista/mês</p>
-                    </div>
-                    
-                    <div class="impact-card">
-                        <div class="impact-number">3.500</div>
-                        <p>Famílias impactadas até 2027</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Seção de doação -->
-            <div class="donation-box">
-                <h3>🤝 Escolha como apoiar</h3>
-                <p class="donation-intro">Sugestões de apoio (você escolhe):</p>
-                
-                <div class="donation-values">
-                    <button class="value-btn" data-value="20">
-                        <span class="value-emoji">☕</span>
-                        <span class="value-amount">R$ 20</span>
-                        <span class="value-desc">Um café</span>
-                    </button>
-                    
-                    <button class="value-btn" data-value="50">
-                        <span class="value-emoji">🍕</span>
-                        <span class="value-amount">R$ 50</span>
-                        <span class="value-desc">Uma pizza</span>
-                    </button>
-                    
-                    <button class="value-btn" data-value="100">
-                        <span class="value-emoji">⛽</span>
-                        <span class="value-amount">R$ 100</span>
-                        <span class="value-desc">Um tanque</span>
-                    </button>
-                    
-                    <button class="value-btn custom" data-value="custom">
-                        <span class="value-emoji">❤️</span>
-                        <span class="value-amount">Outro valor</span>
-                        <span class="value-desc">Você escolhe</span>
-                    </button>
-                </div>
-                
-                <div class="custom-input" id="customInput" style="display: none;">
-                    <label>Digite o valor que fizer sentido para você:</label>
-                    <input type="number" id="customAmount" placeholder="R$ 0,00" min="1">
-                </div>
-                
-                <!-- Reconhecimento por valor -->
-                <div class="donation-perks">
-                    <div class="perk-item">
-                        <span class="perk-badge bronze">🥉 Bronze</span>
-                        <p>R$ 20+ | Agradecimento no site + Grupo VIP</p>
-                    </div>
-                    <div class="perk-item">
-                        <span class="perk-badge silver">🥈 Prata</span>
-                        <p>R$ 50+ | Badge "Apoiador" no perfil</p>
-                    </div>
-                    <div class="perk-item">
-                        <span class="perk-badge gold">🥇 Ouro</span>
-                        <p>R$ 100+ | Menção especial + Acesso antecipado</p>
-                    </div>
-                </div>
-                
-                <!-- PIX -->
-                <div class="pix-section">
-                    <p class="pix-intro">💳 Você pode doar via PIX de forma rápida e segura:</p>
-                    
-                    <div class="pix-key-box">
-                        <label>Chave PIX (E-mail):</label>
-                        <div class="key-display">
-                            <code id="pixKeyValue">contato@loomper.com.br</code>
-                            <button class="btn-copy-pix" onclick="copyPixKey()">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+
+            <!-- CONTEÚDO MOTORISTA -->
+            <div id="tab-motorista" class="tab-content active">
+                <div class="tab-content-grid">
+                    <div class="tab-content-text">
+                        <h3>💰 Economize até R$ 1.200/mês</h3>
+                        <ul class="benefits-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
                                 </svg>
-                                Copiar
-                            </button>
+                                Encontre chapas qualificados rapidamente
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Reduza tempo de espera em até 2 horas
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Avaliações transparentes para decisão segura
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Histórico de serviços validado
+                            </li>
+                        </ul>
+                        <div class="cta-group">
+                            <a href="#cadastro" class="btn btn-primary">Quero participar</a>
+                            <button class="btn btn-secondary btn-simulacao" data-open-simulacao>Ver simulação</button>
                         </div>
-                        <span class="copy-feedback" id="copyFeedback" style="display: none;">✅ Copiado!</span>
                     </div>
-                    
-                    <button class="btn-qr-code" onclick="showQRCodeModal()">
-                        📱 Ver QR Code
-                    </button>
-                    
-                    <p class="pix-note">
-                        🙏 Após contribuir, envie o comprovante no WhatsApp para receber 
-                        nosso agradecimento e badge especial!
-                    </p>
-                    
-                    <a href="https://wa.me/5511999999999?text=Olá!%20Acabei%20de%20apoiar%20o%20Loomper%20💙" 
-                       class="whatsapp-cta" 
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        💬 Enviar comprovante
-                    </a>
+                    <div class="tab-content-visual">
+                        <div class="mockup-card">
+                            <h4>Criar vaga de ajudante</h4>
+                            <div class="mockup-field">
+                                <label>📍 Local</label>
+                                <input type="text" value="São Paulo - Zona Sul" disabled>
+                            </div>
+                            <div class="mockup-field">
+                                <label>📅 Data e Hora</label>
+                                <input type="text" value="26/12/2025 - 14:00" disabled>
+                            </div>
+                            <div class="mockup-field">
+                                <label>💰 Valor oferecido</label>
+                                <input type="text" value="R$ 250,00" disabled>
+                            </div>
+                            <button class="btn btn-primary btn-block" disabled>Publicar vaga</button>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Agradecimento -->
-            <div class="gratitude-note">
-                <p>
-                    🙏 <strong>Cada real importa.</strong> Cada doação nos aproxima de 
-                    um Brasil mais justo para quem trabalha na base da logística. 
-                    Obrigado por acreditar nesta causa.
-                </p>
-                <p class="founder-signature">
-                    — Fundador do Loomper
-                </p>
+
+            <!-- CONTEÚDO CHAPA (NOVO: Vagas disponíveis) -->
+            <div id="tab-chapa" class="tab-content">
+                <div class="tab-content-grid">
+                    <div class="tab-content-text">
+                        <h3>💰 Ganhe até R$ 3.500/mês</h3>
+                        <ul class="benefits-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Veja vagas na sua região em tempo real
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Agenda organizada sem conflitos
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Construa reputação e ganhe mais
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Pagamento garantido e rastreado
+                            </li>
+                        </ul>
+                        <div class="cta-group">
+                            <a href="#cadastro" class="btn btn-primary">Quero participar</a>
+                            <button class="btn btn-secondary btn-simulacao" data-open-simulacao>Ver simulação</button>
+                        </div>
+                    </div>
+                    <div class="tab-content-visual">
+                        <div class="mockup-card">
+                            <h4>Vagas disponíveis perto de você</h4>
+                            
+                            <!-- Vaga 1 -->
+                            <div class="vaga-card">
+                                <div class="vaga-header">
+                                    <span class="vaga-badge nova">Nova</span>
+                                    <span class="vaga-time">Há 5 min</span>
+                                </div>
+                                <div class="vaga-body">
+                                    <p><strong>📍 Descarga em São Paulo - SP</strong></p>
+                                    <p>Tipo: Ajudante descarga</p>
+                                    <p>Veículos: 8 unidades</p>
+                                    <p>Duração: Meio turno (4h)</p>
+                                </div>
+                                <div class="vaga-footer">
+                                    <span class="vaga-value">R$ 250,00</span>
+                                    <button class="btn btn-sm btn-primary">Me candidatar</button>
+                                </div>
+                            </div>
+
+                            <!-- Vaga 2 -->
+                            <div class="vaga-card">
+                                <div class="vaga-header">
+                                    <span class="vaga-badge urgente">Urgente</span>
+                                    <span class="vaga-time">Há 15 min</span>
+                                </div>
+                                <div class="vaga-body">
+                                    <p><strong>📍 Carga em Guarulhos - SP</strong></p>
+                                    <p>Tipo: Chapa guia</p>
+                                    <p>Veículos: 12 unidades</p>
+                                    <p>Duração: Turno inteiro (8h)</p>
+                                </div>
+                                <div class="vaga-footer">
+                                    <span class="vaga-value">R$ 380,00</span>
+                                    <button class="btn btn-sm btn-primary">Me candidatar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CONTEÚDO TRANSPORTADORA (NOVO: Dashboard) -->
+            <div id="tab-transportadora" class="tab-content">
+                <div class="tab-content-grid">
+                    <div class="tab-content-text">
+                        <h3>📈 Aumente o faturamento em 25%</h3>
+                        <ul class="benefits-list">
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Dashboard em tempo real de operações
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Reduza ociosidade em até 34%
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Métricas de performance detalhadas
+                            </li>
+                            <li>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="20 6 9 17 4 12"/>
+                                </svg>
+                                Gestão de qualidade com avaliações
+                            </li>
+                        </ul>
+                        <div class="cta-group">
+                            <a href="#cadastro" class="btn btn-primary">Quero participar</a>
+                            <button class="btn btn-secondary btn-simulacao" data-open-simulacao>Ver simulação</button>
+                        </div>
+                    </div>
+                    <div class="tab-content-visual">
+                        <div class="mockup-card">
+                            <h4>Painel de Gestão</h4>
+                            
+                            <!-- KPIs -->
+                            <div class="kpi-grid">
+                                <div class="kpi-card">
+                                    <div class="kpi-label">Serviços/Mês</div>
+                                    <div class="kpi-value">247</div>
+                                    <div class="kpi-change positive">+18% vs mês anterior</div>
+                                </div>
+                                <div class="kpi-card">
+                                    <div class="kpi-label">Economia Estimada</div>
+                                    <div class="kpi-value">R$ 12.450</div>
+                                    <div class="kpi-change positive">+22% eficiência</div>
+                                </div>
+                                <div class="kpi-card">
+                                    <div class="kpi-label">Redução Atrasos</div>
+                                    <div class="kpi-value">34%</div>
+                                    <div class="kpi-change positive">Melhoria contínua</div>
+                                </div>
+                                <div class="kpi-card">
+                                    <div class="kpi-label">Satisfação Motoristas</div>
+                                    <div class="kpi-value">4.8/5.0</div>
+                                    <div class="kpi-change neutral">98% aprovação</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== SEÇÃO: CADASTRO ========== -->
-    <section class="section section-cadastro" id="cadastro">
-        <div class="container">
+    <!-- ============================================
+         SEÇÃO: BETA FECHADO
+         ============================================ -->
+    <section id="beta" class="section section-dark" data-section-name="Beta Fechado">
+        <div class="container container-narrow">
             <div class="section-header">
-                <span class="section-tag">CADASTRE-SE</span>
-                <h2 class="section-title">Garanta seu lugar no Beta fechado</h2>
+                <span class="section-label">BETA FECHADO</span>
+                <h2>🚀 Seja um dos primeiros pioneiros</h2>
                 <p class="section-subtitle">
-                    O acesso é limitado. A construção é coletiva.<br>
-                    Se fizer sentido para você, será um prazer caminhar juntos.
+                    Vagas limitadas para quem quer construir o futuro da logística conosco
                 </p>
             </div>
-            
-            <div class="form-container">
-                <form name="cadastro-beta" method="POST" data-netlify="true" action="/sucesso.html" id="cadastroForm">
-                    <input type="hidden" name="form-name" value="cadastro-beta">
-                    <input type="hidden" name="user_id" id="userId">
-                    <input type="hidden" name="referred_by" id="referredBy">
-                    
-                    <!-- Progresso -->
-                    <div class="form-progress">
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="formProgress" style="width: 0%;"></div>
-                        </div>
-                        <p class="progress-label" id="formProgressLabel">0% completo</p>
+
+            <!-- Contador de vagas -->
+            <div class="vagas-counter">
+                <div class="vagas-numbers">
+                    <span id="vagas-atual">47</span> / <span id="vagas-total">200</span>
+                    <span class="vagas-label">vagas preenchidas</span>
+                </div>
+                <div class="vagas-progress">
+                    <div class="vagas-progress-bar"></div>
+                </div>
+            </div>
+
+            <!-- Cards de benefícios -->
+            <div class="beta-benefits">
+                <div class="beta-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
                     </div>
-                    
-                    <!-- Perfil -->
-                    <div class="form-field">
-                        <label for="perfil">Perfil <span class="required">*</span></label>
-                        <select id="perfil" name="perfil" required>
-                            <option value="">Selecione seu perfil</option>
-                            <option value="motorista">Motorista de Cegonha</option>
-                            <option value="chapa">Chapa / Ajudante</option>
-                            <option value="transportadora">Transportadora</option>
+                    <h4>Selo Pioneiro</h4>
+                    <p>Badge exclusivo e vitalício na plataforma</p>
+                </div>
+
+                <div class="beta-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </div>
+                    <h4>Histórico Inicial</h4>
+                    <p>Construa reputação antes do mercado abrir</p>
+                </div>
+
+                <div class="beta-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </div>
+                    <h4>Voz Ativa</h4>
+                    <p>Influencie o produto com seu feedback</p>
+                </div>
+
+                <div class="beta-card">
+                    <div class="icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <h4>Vantagens Futuras</h4>
+                    <p>Benefícios exclusivos em campanhas</p>
+                </div>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h5>Março/2026</h5>
+                        <p>Lançamento do Beta fechado</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker active"></div>
+                    <div class="timeline-content">
+                        <h5>Junho/2026</h5>
+                        <p>Lançamento oficial nas lojas</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-center">
+                <a href="#cadastro" class="btn btn-primary btn-lg">
+                    Quero minha vaga de pioneiro
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SEÇÃO: CADASTRO
+         ============================================ -->
+    <section id="cadastro" class="section section-light" data-section-name="Cadastro">
+        <div class="container container-narrow">
+            <div class="section-header">
+                <span class="section-label">CADASTRE-SE</span>
+                <h2>Junte-se aos pioneiros do Loomper</h2>
+                <p class="section-subtitle">
+                    Preencha o formulário e garanta sua vaga no Beta fechado
+                </p>
+            </div>
+
+            <!-- Barra de progresso do formulário -->
+            <div class="form-progress">
+                <div class="form-progress-bar"></div>
+            </div>
+            <p class="form-progress-text">0% completo</p>
+
+            <!-- Formulário (CORRIGIDO) -->
+            <form 
+                id="cadastro-form" 
+                name="cadastro-beta" 
+                method="POST" 
+                action="/sucesso.html"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+            >
+                <!-- Honeypot anti-spam -->
+                <input type="hidden" name="form-name" value="cadastro-beta">
+                <p style="display: none;">
+                    <label>Não preencha: <input name="bot-field"></label>
+                </p>
+
+                <div class="form-group">
+                    <label for="nome">Nome completo *</label>
+                    <input 
+                        type="text" 
+                        id="nome" 
+                        name="nome" 
+                        required 
+                        placeholder="Seu nome completo"
+                        autocomplete="name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        required 
+                        placeholder="seu@email.com"
+                        autocomplete="email"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="whatsapp">WhatsApp *</label>
+                    <input 
+                        type="tel" 
+                        id="whatsapp" 
+                        name="whatsapp" 
+                        required 
+                        placeholder="(11) 98765-4321"
+                        autocomplete="tel"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="perfil">Você é: *</label>
+                    <select id="perfil" name="perfil" required>
+                        <option value="">Selecione seu perfil</option>
+                        <option value="motorista">Motorista de Cegonha</option>
+                        <option value="chapa">Chapa / Ajudante</option>
+                        <option value="transportadora">Transportadora</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="estado">Estado *</label>
+                        <select id="estado" name="estado" required>
+                            <option value="">Carregando...</option>
                         </select>
-                        <span class="validation-icon"></span>
-                        <span class="error-message"></span>
                     </div>
-                    
-                    <!-- Nome -->
-                    <div class="form-field">
-                        <label for="nome">Nome completo <span class="required">*</span></label>
+
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
                         <input 
                             type="text" 
-                            id="nome" 
-                            name="nome" 
-                            placeholder="Ex: João Silva" 
-                            required
-                            autocomplete="name"
+                            id="cidade" 
+                            name="cidade" 
+                            required 
+                            placeholder="Selecione o estado primeiro"
+                            disabled
+                            autocomplete="off"
                         >
-                        <span class="validation-icon"></span>
-                        <span class="error-message"></span>
                     </div>
-                    
-                    <!-- WhatsApp -->
-                    <div class="form-field">
-                        <label for="whatsapp">WhatsApp <span class="required">*</span></label>
-                        <input 
-                            type="tel" 
-                            id="whatsapp" 
-                            name="whatsapp" 
-                            placeholder="(11) 99999-9999" 
-                            required
-                            autocomplete="tel"
-                        >
-                        <span class="help-text">
-                            💡 Usaremos para enviar notificações de vagas
-                        </span>
-                        <span class="validation-icon"></span>
-                        <span class="error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="convidar">Convidar amigo (opcional)</label>
+                    <input 
+                        type="email" 
+                        id="convidar" 
+                        name="convidar" 
+                        placeholder="email@amigo.com"
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-lg">
+                    Quero ser pioneiro
+                </button>
+
+                <p class="form-note">
+                    Ao se cadastrar, você concorda com nossos 
+                    <a href="/termos.html">Termos de Uso</a> e 
+                    <a href="/privacidade.html">Política de Privacidade</a>
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SEÇÃO: APOIE
+         ============================================ -->
+    <section id="apoie" class="section section-dark" data-section-name="Apoie">
+        <div class="container container-narrow">
+            <div class="section-header">
+                <span class="section-label">APOIE</span>
+                <h2>💙 Apoie quem move o Brasil</h2>
+                <p class="section-subtitle">
+                    Este projeto nasceu da escuta de quem está na estrada. <br>
+                    Se faz sentido para você, considere apoiar com qualquer valor.
+                </p>
+            </div>
+
+            <div class="apoie-card">
+                <p class="apoie-message">
+                    Não é obrigatório. Não é cobrança. É um convite para construir juntos.<br>
+                    Cada contribuição nos aproxima de um Brasil mais justo para quem sempre foi invisível.
+                </p>
+
+                <!-- Opções de apoio -->
+                <div class="apoie-valores">
+                    <button class="btn-valor" data-valor="20">☕ R$ 20</button>
+                    <button class="btn-valor" data-valor="50">🍕 R$ 50</button>
+                    <button class="btn-valor" data-valor="100">⛽ R$ 100</button>
+                    <button class="btn-valor" data-valor="outro">❤️ Outro</button>
+                </div>
+
+                <!-- PIX (CORRIGIDO) -->
+                <div class="pix-section">
+                    <p><strong>Chave PIX (e-mail):</strong></p>
+                    <div class="pix-key-container">
+                        <code class="pix-key">contato@loomper.com.br</code>
+                        <button id="copy-pix" class="btn btn-secondary btn-sm">
+                            Copiar chave
+                        </button>
                     </div>
-                    
-                    <!-- Email -->
-                    <div class="form-field">
-                        <label for="email">E-mail <span class="required">*</span></label>
-                        <input 
-                            type="email" 
-                            id="email" 
-                            name="email" 
-                            placeholder="seu@email.com" 
-                            required
-                            autocomplete="email"
-                        >
-                        <span class="validation-icon"></span>
-                        <span class="error-message"></span>
-                    </div>
-                    
-                    <!-- Estado -->
-                    <div class="form-field">
-                        <label for="estado">Estado <span class="required">*</span></label>
-                        <select id="estado" name="estado" required>
-                            <option value="">Carregando estados...</option>
-                        </select>
-                        <span class="validation-icon"></span>
-                        <span class="error-message"></span>
-                    </div>
-                    
-                    <!-- Cidade -->
-                    <div class="form-field">
-                        <label for="cidade">Cidade <span class="required">*</span></label>
-                        <div class="autocomplete-wrapper">
-                            <input 
-                                type="text" 
-                                id="cidade" 
-                                name="cidade" 
-                                placeholder="Digite o nome da cidade" 
-                                required
-                                autocomplete="off"
-                                disabled
-                            >
-                            <div class="city-suggestions" id="citySuggestions"></div>
-                        </div>
-                        <span class="validation-icon"></span>
-                        <span class="error-message"></span>
-                    </div>
-                    
-                    <!-- Convidar amigo -->
-                    <div class="form-field">
-                        <label for="convidar">Convidar amigo (opcional)</label>
-                        <input 
-                            type="email" 
-                            id="convidar" 
-                            name="convidar_amigo" 
-                            placeholder="email@amigo.com"
-                        >
-                        <span class="help-text">
-                            📢 Convide amigos e ganhe benefícios exclusivos!
-                        </span>
-                    </div>
-                    
-                    <!-- Submit -->
-                    <button type="submit" class="btn-primary btn-large btn-submit" id="btnSubmit">
-                        <span class="btn-text">Garantir meu lugar no Beta</span>
-                        <span class="btn-loading" style="display: none;">
-                            <span class="spinner"></span>
-                            Enviando...
-                        </span>
-                    </button>
-                    
-                    <p class="form-note">
-                        Ao se cadastrar, você concorda com nossos 
-                        <a href="/termos.html" target="_blank">Termos de Uso</a> e 
-                        <a href="/privacidade.html" target="_blank">Política de Privacidade</a>
+                    <p class="pix-note">
+                        Após contribuir, envie o comprovante via 
+                        <a href="https://wa.me/5511999999999?text=Olá! Acabei de apoiar o Loomper 💙" target="_blank" class="link-whatsapp">
+                            WhatsApp
+                        </a> 
+                        para receber seu badge de apoiador!
                     </p>
-                </form>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== FOOTER ========== -->
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
     <footer class="footer">
         <div class="container">
-            <!-- Logo -->
-            <div class="footer-logo">
-                <img src="./images/loomper_logo_semfundo.PNG" alt="Loomper" class="logo">
-            </div>
-            
-            <!-- Menu de navegação -->
-            <nav class="footer-nav">
-                <div class="footer-column">
+            <div class="footer-grid">
+                <!-- Coluna 1: Sobre -->
+                <div class="footer-col">
                     <h4>Sobre</h4>
                     <ul>
-                        <li><a href="/quem-somos.html">Quem Somos</a></li>
-                        <li><a href="/visao-proposito.html">Visão e Propósito</a></li>
-                        <li><a href="#como-funciona">Como Funciona</a></li>
-                        <li><a href="/impacto-social.html">Impacto Social</a></li>
+                        <li><a href="/quem-somos.html">Quem somos</a></li>
+                        <li><a href="/visao.html">Visão e propósito</a></li>
+                        <li><a href="/como-funciona.html">Como funciona</a></li>
+                        <li><a href="/impacto.html">Impacto social</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
+
+                <!-- Coluna 2: Suporte -->
+                <div class="footer-col">
                     <h4>Suporte</h4>
                     <ul>
-                        <li><a href="/faq.html">Perguntas Frequentes</a></li>
-                        <li><a href="/contato.html">Contato</a></li>
-                        <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
-                        <li><a href="/ajuda.html">Central de Ajuda</a></li>
+                        <li><a href="/faq.html">FAQ</a></li>
+                        <li><a href="https://wa.me/5511999999999" target="_blank">Contato</a></li>
+                        <li><a href="/ajuda.html">Central de ajuda</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
+
+                <!-- Coluna 3: Legal -->
+                <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="/termos.html" target="_blank">Termos de Uso</a></li>
-                        <li><a href="/privacidade.html" target="_blank">Política de Privacidade</a></li>
+                        <li><a href="/termos.html">Termos de Uso</a></li>
+                        <li><a href="/privacidade.html">Privacidade</a></li>
                         <li><a href="/lgpd.html">LGPD</a></li>
-                        <li><a href="/cookies.html">Cookies</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
+
+                <!-- Coluna 4: Comunidade -->
+                <div class="footer-col">
                     <h4>Comunidade</h4>
                     <ul>
-                        <li><a href="#pioneiros">Pioneiros</a></li>
-                        <li><a href="/blog.html">Blog</a></li>
-                        <li><a href="/novidades.html">Novidades</a></li>
-                        <li><a href="/apoiadores.html">Apoiadores</a></li>
+                        <li><a href="#beta">Beta Fechado</a></li>
+                        <li><a href="#apoie">Apoie o projeto</a></li>
+                        <li><a href="/pioneiros.html">Hall dos Pioneiros</a></li>
                     </ul>
                 </div>
-            </nav>
-            
-            <!-- Informações corporativas -->
-            <div class="footer-info">
-                <p class="tagline">Logística · Tecnologia · Pessoas</p>
-                <p class="trademark"><strong>LOOMPER®</strong> — Marca registrada</p>
-                <p class="company">Uma empresa do <strong>Grupo Ajud.AI</strong></p>
-                <p class="legal-name">Ajud.ai Brasil Inova Simples (I.S.)</p>
-                <p class="cnpj">CNPJ: 59.150.688/0001-39</p>
-                <p class="address">São Bernardo do Campo · SP · Brasil</p>
             </div>
-            
-            <!-- Copyright -->
+
             <div class="footer-bottom">
-                <p>© 2025 LOOMPER — Todos os direitos reservados.</p>
+                <img src="assets/images/loomper_logo_semfundo.PNG" alt="LOOMPER" class="footer-logo">
+                <p>
+                    <strong>LOOMPER</strong><br>
+                    CNPJ: 59.150.688/0001-39<br>
+                    São Bernardo do Campo, SP - Brasil
+                </p>
+                <p class="footer-copy">
+                    © 2025 LOOMPER - Todos os direitos reservados<br>
+                    Uma iniciativa do <strong>Grupo Ajud.AI</strong>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- ========== WHATSAPP FLUTUANTE ========== -->
-    <a href="https://wa.me/5511999999999?text=Olá!%20Vim%20pelo%20site%20do%20Loomper" 
-       class="whatsapp-float" 
-       target="_blank"
-       rel="noopener noreferrer"
-       aria-label="WhatsApp">
-        <img src="./images/logo-whatsapp.png" alt="WhatsApp">
-        <span class="whatsapp-badge">Online</span>
-    </a>
-
-    <!-- ========== MODAL SIMULAÇÃO ========== -->
-    <div id="simulacaoModal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeSimulacaoModal()">&times;</span>
-            
-            <h2>✅ Vaga Simulada Criada!</h2>
-            
-            <div class="simulacao-preview">
-                <h3>Resumo da Vaga</h3>
-                
-                <div class="info-row">
-                    <span class="label">📍 Local:</span>
-                    <span class="value" id="simEstado">São Paulo</span>
-                </div>
-                
-                <div class="info-row">
-                    <span class="label">🏙️ Cidade:</span>
-                    <span class="value" id="simCidade">São Paulo</span>
-                </div>
-                
-                <div class="info-row">
-                    <span class="label">🚛 Tipo:</span>
-                    <span class="value" id="simTipo">Motorista</span>
-                </div>
-                
-                <div class="info-row">
-                    <span class="label">💰 Valor:</span>
-                    <span class="value">R$ 200,00</span>
-                </div>
-            </div>
-            
-            <div class="simulacao-info">
-                <p>💡 <strong>Exemplo de como ficaria:</strong></p>
-                
-                <div class="vaga-card-preview">
-                    <div class="vaga-header">
-                        <h4>🚚 Descarga em <span id="simCidade2">São Paulo</span></h4>
-                        <span class="vaga-status">🔍 Buscando ajudante</span>
-                    </div>
-                    
-                    <div class="vaga-details">
-                        <p>📍 <span id="simEstado2">São Paulo</span></p>
-                        <p>💰 R$ 200,00</p>
-                        <p>⏱️ Duração estimada: 2-4 horas</p>
-                    </div>
-                    
-                    <div class="vaga-footer">
-                        <span class="vaga-time">Publicado agora</span>
-                    </div>
-                </div>
-            </div>
-            
-            <p class="simulacao-disclaimer">
-                ⚠️ Esta é apenas uma <strong>simulação</strong>. 
-                No app real, ajudantes verão e poderão aceitar sua vaga.
-            </p>
-            
-            <div class="modal-actions">
-                <button class="btn-secondary" onclick="closeSimulacaoModal()">Entendi</button>
-                <button class="btn-primary" onclick="scrollToCadastro()">Quero me cadastrar agora</button>
-            </div>
-        </div>
+    <!-- ============================================
+         WHATSAPP FLUTUANTE
+         ============================================ -->
+    <div class="whatsapp-float">
+        <a href="https://wa.me/5511999999999?text=Olá! Tenho interesse no Loomper." target="_blank">
+            <img src="assets/images/logo-whatsapp.png" alt="WhatsApp">
+            <span class="whatsapp-badge">Dúvidas? Estamos online!</span>
+        </a>
     </div>
 
-    <!-- ========== MODAL QR CODE ========== -->
-    <div id="qrcodeModal" class="modal" style="display: none;">
-        <div class="modal-content modal-small">
-            <span class="modal-close" onclick="closeQRCodeModal()">&times;</span>
+    <!-- ============================================
+         MODAL DE SIMULAÇÃO
+         ============================================ -->
+    <div id="modal-simulacao" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close">&times;</button>
             
-            <h2>📱 QR Code PIX</h2>
+            <h3 class="modal-title">💰 Sua simulação</h3>
             
-            <div class="qrcode-container">
-                <img src="./images/chave_destino_pix.jpg" alt="QR Code PIX" class="qrcode-image">
+            <div class="modal-body">
+                <p><strong>Localização:</strong> <span id="sim-estado">-</span> / <span id="sim-cidade">-</span></p>
+                
+                <div class="simulacao-grid">
+                    <div class="sim-card">
+                        <div class="sim-label">Economia/Ganho mensal</div>
+                        <div class="sim-value" id="sim-economia">R$ 0,00</div>
+                    </div>
+                    <div class="sim-card">
+                        <div class="sim-label">Ganhos extras</div>
+                        <div class="sim-value" id="sim-ganhos">-</div>
+                    </div>
+                    <div class="sim-card">
+                        <div class="sim-label">Tempo economizado</div>
+                        <div class="sim-value" id="sim-tempo">-</div>
+                    </div>
+                    <div class="sim-card">
+                        <div class="sim-label">Serviços/mês</div>
+                        <div class="sim-value" id="sim-entregas">-</div>
+                    </div>
+                </div>
             </div>
             
-            <p class="qrcode-note">
-                Aponte a câmera do seu celular para o QR Code acima
-            </p>
-            
-            <div class="modal-actions">
-                <button class="btn-primary" onclick="closeQRCodeModal()">Fechar</button>
+            <div class="modal-footer">
+                <button class="btn btn-primary btn-block btn-cadastrar-modal">
+                    Quero me cadastrar agora
+                </button>
             </div>
         </div>
     </div>
 
     <!-- JavaScript -->
-    <script src="./assets/loomper-optimized.js"></script>
-    
+    <script src="assets/loomper-optimized.js"></script>
 </body>
 </html>
